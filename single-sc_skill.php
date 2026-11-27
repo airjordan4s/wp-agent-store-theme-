@@ -338,7 +338,10 @@ $cur_url     = function_exists( 'get_permalink' ) && $post_id ? get_permalink( $
 	<div class="sc-modal__box">
 		<?php if ( ! $logged_in ) : ?>
 			<div class="sc-modal__head">
-				<h3 id="sc-buyModalTitle"><?php echo esc_html( sc_t( '请先注册或登录账户', 'Sign up or sign in to continue' ) ); ?></h3>
+				<div class="sc-modal__title">
+					<img class="sc-modal__logo" src="<?php echo esc_url( SKILLCRAFT_URI . '/assets/img/mascot/mascot-head.png' ); ?>" alt="" width="34" height="20">
+					<h3 id="sc-buyModalTitle"><?php echo esc_html( sc_t( '请先注册或登录账户', 'Sign up or sign in to continue' ) ); ?></h3>
+				</div>
 				<button type="button" class="sc-modal__close" data-close-modal aria-label="<?php echo esc_attr( sc_t( '关闭', 'Close' ) ); ?>">×</button>
 			</div>
 			<p class="sc-modal__desc">
@@ -391,7 +394,10 @@ $cur_url     = function_exists( 'get_permalink' ) && $post_id ? get_permalink( $
 			</form>
 		<?php else : ?>
 			<div class="sc-modal__head">
-				<h3 id="sc-buyModalTitle"><?php echo esc_html( sc_t( '确认下单并自动发货', 'Checkout & Instant Delivery' ) ); ?></h3>
+				<div class="sc-modal__title">
+					<img class="sc-modal__logo" src="<?php echo esc_url( SKILLCRAFT_URI . '/assets/img/mascot/mascot-head.png' ); ?>" alt="" width="34" height="20">
+					<h3 id="sc-buyModalTitle"><?php echo esc_html( sc_t( '确认下单并自动发货', 'Checkout & Instant Delivery' ) ); ?></h3>
+				</div>
 				<button type="button" class="sc-modal__close" data-close-modal aria-label="<?php echo esc_attr( sc_t( '关闭', 'Close' ) ); ?>">×</button>
 			</div>
 			<p class="sc-modal__desc">

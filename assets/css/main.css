@@ -5595,3 +5595,18 @@ button { font-family: inherit; }
 	backdrop-filter: blur(12px);
 	border-color: rgba(255, 255, 255, 0.16);
 }
+
+
+.sc-modal__title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.sc-modal__logo {
+	display: block;
+	width: auto;
+	height: 24px;
+	object-fit: contain;
+	flex-shrink: 0;
+}
