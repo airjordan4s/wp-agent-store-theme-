@@ -26,35 +26,59 @@ if ( 'POST' === ( $_SERVER['REQUEST_METHOD'] ?? '' ) && ! empty( $_POST['sc_cust
 ?>
 
 <section class="sc-band sc-subpage">
-	<!-- 页头 -->
-	<div class="sc-framed sc-subhero">
-		<span class="sc-kicker">/ <?php echo esc_html( sc_t( '私有定制与团队团购', 'CUSTOM & TEAM LICENSING' ) ); ?></span>
-		<h1><?php echo esc_html( sc_t( '为你的团队定制专属 AI 工作台与插件', 'Bespoke AI Workbenches & Team Licensing' ) ); ?></h1>
-		<p><?php echo esc_html( sc_t( '无论是 5 人以上团队批量采购自营作品，还是把你们内部的工程规范与业务 SOP 封装为私有 Skill，我们都提供端到端交付。', 'Volume team licenses for our catalog or 1-on-1 engineering to package your internal SOPs into private Skills.' ) ); ?></p>
+	<!-- 画廊感双栏页头 + 3 格交付指标 -->
+	<div class="sc-framed sc-mk-hero">
+		<div class="sc-mk-hero__copy">
+			<span class="sc-kicker">/ <?php echo esc_html( sc_t( '私有定制与团队团购 · BESPOKE', 'CUSTOM & TEAM LICENSING' ) ); ?></span>
+			<h1><?php echo esc_html( sc_t( '为你的团队定制专属 AI 工作台', 'Bespoke AI Workbenches for Teams' ) ); ?></h1>
+			<p><?php echo esc_html( sc_t( '无论是 5 人以上团队批量采购，还是把你们内部的业务流程封装成专属工作台与 MCP，我们提供一站式私有交付。', 'From volume seat discounts to 1-on-1 private workbench & MCP builds tailored to your exact workflows.' ) ); ?></p>
+		</div>
+		<div class="sc-mk-stats">
+			<div class="sc-mk-stat">
+				<strong>24h</strong>
+				<span><?php echo esc_html( sc_t( '评估与报价', 'Scoping SLA' ) ); ?></span>
+			</div>
+			<div class="sc-mk-stat">
+				<strong>3–7d</strong>
+				<span><?php echo esc_html( sc_t( '极速打样交付', 'Turnaround' ) ); ?></span>
+			</div>
+			<div class="sc-mk-stat">
+				<strong>100%</strong>
+				<span><?php echo esc_html( sc_t( '私有源码归属', 'IP Ownership' ) ); ?></span>
+			</div>
+		</div>
 	</div>
 
-	<!-- 两档方案卡片 -->
-	<div class="sc-framed sc-custom-plans">
-		<div class="sc-cplan">
-			<span class="sc-kicker">01 / TEAM BUNDLE</span>
-			<h2><?php echo esc_html( sc_t( '团队批量授权', 'Team Volume License' ) ); ?></h2>
-			<p class="sc-cplan__price"><strong>7<?php echo esc_html( sc_t( ' 折起', '0% off+' ) ); ?></strong><span><?php echo esc_html( sc_t( '5 个席位起购 · 统一电子发票', '5+ seats · Corporate invoicing' ) ); ?></span></p>
-			<ul class="sc-pd-list">
-				<li><?php echo esc_html( sc_t( '全店自营 Skill 任意组合打包，支持一键分发给团队成员', 'Mix and match any catalog Skills with team-wide distribution' ) ); ?></li>
-				<li><?php echo esc_html( sc_t( '免费获得后续版本升级与新模型适配优化', 'Free ongoing rule updates and new model optimizations' ) ); ?></li>
-				<li><?php echo esc_html( sc_t( '提供正规企业增值税电子发票与专属技术支持群', 'Formal tax invoices and a dedicated support channel' ) ); ?></li>
-			</ul>
-		</div>
+	<!-- 两档方案悬浮质感卡片 -->
+	<div class="sc-framed sc-pricing-stage">
+		<div class="sc-custom-plans">
+			<div class="sc-cloud-plan">
+				<span class="sc-plan-eyebrow">01 / TEAM BUNDLE</span>
+				<h2><?php echo esc_html( sc_t( '团队批量授权团购', 'Team Volume License' ) ); ?></h2>
+				<p class="sc-plan-sub"><?php echo esc_html( sc_t( '5 个席位起购 · 统一授权管理与电子发票', '5+ seats · Unified team keys & corporate invoicing' ) ); ?></p>
+				<div class="sc-plan-price">
+					<strong><?php echo esc_html( sc_t( '7 折起', '30% Off' ) ); ?></strong>
+				</div>
+				<ul class="sc-pd-list">
+					<li><?php echo esc_html( sc_t( '全店在售工作台、MCP 与 Skill 任意组合打包，支持一键分发给团队成员', 'Mix and match any Workbenches, MCP plugins, or Skills with team-wide distribution' ) ); ?></li>
+					<li><?php echo esc_html( sc_t( '免费获得后续版本升级、设备解绑与新模型适配优化', 'Free ongoing updates, seat transfers, and new model optimizations' ) ); ?></li>
+					<li><?php echo esc_html( sc_t( '提供正规企业增值税电子发票与专属技术支持群', 'Formal tax invoices and a dedicated support channel' ) ); ?></li>
+				</ul>
+			</div>
 
-		<div class="sc-cplan sc-cplan--dark">
-			<span class="sc-kicker" style="color:rgba(255,255,255,0.55)">02 / BESPOKE ENGINEERING</span>
-			<h2><?php echo esc_html( sc_t( '1 对 1 私有 Skill 定制', '1-on-1 Bespoke Skill' ) ); ?></h2>
-			<p class="sc-cplan__price"><strong><?php echo esc_html( sc_t( '按需报价', 'Custom' ) ); ?></strong><span><?php echo esc_html( sc_t( '3–7 个工作日交付 · 源码/加密可选', '3–7 day turnaround · Private delivery' ) ); ?></span></p>
-			<ul class="sc-pd-list sc-pd-list--dark">
-				<li><?php echo esc_html( sc_t( '深度贴合你们的内部代码规范、数据库结构、审批或法务模板', 'Tailored to your exact codebase, schemas, or internal SOPs' ) ); ?></li>
-				<li><?php echo esc_html( sc_t( '交付完整回归测试集与安全沙箱验证报告，验收满意再结项', 'Includes regression eval suites and safety verification' ) ); ?></li>
-				<li><?php echo esc_html( sc_t( '支持完全私有内网部署，知识产权 100% 归属贵司', 'Supports air-gapped private hosting with full IP ownership' ) ); ?></li>
-			</ul>
+			<div class="sc-cloud-plan sc-cloud-plan--featured" style="--sc-spot-bg:url('<?php echo esc_url( SKILLCRAFT_URI . '/assets/img/spotlight-bg.jpg' ); ?>')">
+				<span class="sc-plan-eyebrow sc-plan-eyebrow--gold">★ 02 / BESPOKE ENGINEERING</span>
+				<h2><?php echo esc_html( sc_t( '1 对 1 私有工作台定制', '1-on-1 Bespoke Workbench' ) ); ?></h2>
+				<p class="sc-plan-sub"><?php echo esc_html( sc_t( '3–7 个工作日交付 · 支持源码与私有内网交付', '3–7 day turnaround · Private hosting & source handover' ) ); ?></p>
+				<div class="sc-plan-price">
+					<strong><?php echo esc_html( sc_t( '按需报价', 'Custom' ) ); ?></strong>
+				</div>
+				<ul class="sc-pd-list sc-pd-list--dark">
+					<li><?php echo esc_html( sc_t( '深度贴合你们的内部业务系统、数据库结构、电商流程或审批 SOP', 'Tailored to your exact internal systems, schemas, or operational SOPs' ) ); ?></li>
+					<li><?php echo esc_html( sc_t( '支持内嵌 dsh、独立桌面端/Web 或远程 MCP 形态交付', 'Delivered as dsh plugin, standalone desktop/web desk, or remote MCP' ) ); ?></li>
+					<li><?php echo esc_html( sc_t( '支持完全私有内网部署，知识产权 100% 归属贵司', 'Supports air-gapped private hosting with full IP ownership' ) ); ?></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 

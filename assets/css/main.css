@@ -5755,3 +5755,114 @@ button { font-family: inherit; }
 	0%   { opacity: 1; transform: translateY(4px) scale(0.7); }
 	100% { opacity: 0; transform: translateY(-24px) scale(1.15); }
 }
+
+
+/* 升级云端部署页 & 定制页：悬浮画廊质感方案卡 + 大字号价格层级修复 */
+.sc-pricing-stage {
+	padding: 40px 48px 44px;
+	background: var(--sc-bg);
+	border-bottom: 1px solid var(--sc-line);
+}
+
+.sc-pricing-stage .sc-cloud-plans {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 20px;
+	border-bottom: 0;
+}
+
+.sc-pricing-stage .sc-custom-plans {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 24px;
+	border-bottom: 0;
+}
+
+.sc-pricing-stage .sc-cloud-plan {
+	padding: 34px 30px;
+	background: #ffffff;
+	border: 1px solid var(--sc-line-strong);
+	border-radius: 14px;
+	box-shadow: 0 6px 24px rgba(17, 17, 17, 0.04);
+	transition: transform 200ms var(--sc-ease), box-shadow 200ms var(--sc-ease);
+}
+
+.sc-pricing-stage .sc-cloud-plan:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 16px 36px rgba(17, 17, 17, 0.08);
+}
+
+.sc-pricing-stage .sc-cloud-plan--featured {
+	background:
+		linear-gradient(155deg, rgba(14, 16, 22, 0.92) 0%, rgba(14, 16, 22, 0.78) 65%, rgba(22, 119, 255, 0.24) 100%),
+		var(--sc-spot-bg) center / cover no-repeat,
+		#111216;
+	border-color: rgba(255, 255, 255, 0.16);
+	box-shadow: 0 22px 48px rgba(11, 12, 16, 0.22);
+}
+
+.sc-plan-eyebrow {
+	display: inline-flex;
+	align-items: center;
+	align-self: flex-start;
+	padding: 3px 9px;
+	border-radius: 999px;
+	background: var(--sc-bg);
+	border: 1px solid var(--sc-line);
+	font-family: var(--sc-font-mono);
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	color: var(--sc-muted-2);
+}
+
+.sc-plan-eyebrow--gold {
+	background: rgba(250, 204, 21, 0.14);
+	border-color: rgba(250, 204, 21, 0.35);
+	color: #facc15;
+}
+
+.sc-plan-sub {
+	font-size: 13px;
+	color: var(--sc-muted-2);
+	line-height: 1.55;
+	margin-top: -6px;
+}
+
+.sc-cloud-plan--featured .sc-plan-sub {
+	color: rgba(255, 255, 255, 0.65);
+}
+
+.sc-plan-price {
+	padding: 14px 0 18px;
+	border-bottom: 1px solid var(--sc-line);
+}
+
+.sc-cloud-plan--featured .sc-plan-price {
+	border-bottom-color: rgba(255, 255, 255, 0.14);
+}
+
+.sc-plan-price strong,
+.sc-plan-price strong .sc-price-val {
+	font-family: var(--sc-font-mono);
+	font-size: 36px;
+	font-weight: 700;
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+	color: var(--sc-ink);
+}
+
+.sc-cloud-plan--featured .sc-plan-price strong,
+.sc-cloud-plan--featured .sc-plan-price strong .sc-price-val {
+	color: #ffffff;
+}
+
+.sc-cloud-feats {
+	background: var(--sc-surface);
+}
+
+@media (max-width: 1020px) {
+	.sc-pricing-stage { padding: 24px 20px; }
+	.sc-pricing-stage .sc-cloud-plans,
+	.sc-pricing-stage .sc-custom-plans { grid-template-columns: 1fr; }
+}

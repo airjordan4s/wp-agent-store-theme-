@@ -38,61 +38,79 @@ if ( 'POST' === ( $_SERVER['REQUEST_METHOD'] ?? '' ) && ! empty( $_POST['sc_clou
 ?>
 
 <section class="sc-band sc-subpage sc-cloud-page">
-	<!-- 1. 页头 -->
-	<div class="sc-framed sc-subhero">
-		<span class="sc-kicker">/ <?php echo esc_html( sc_t( '云端 AGENT 托管 · DOT CLOUD BOX', 'CLOUD AGENT HOSTING · DOT BOX' ) ); ?></span>
-		<h1><?php echo esc_html( sc_t( '把你的 AI 工作台与 Agent，部署到专属云端 Dot 盒子', 'Deploy your AI Workbenches & Agents on a private Dot Cloud Box' ) ); ?></h1>
-		<p><?php echo esc_html( sc_t( '电脑关机、断网也能 24 小时持续运行。预装业务工作台、远程 MCP 网关与独立纯净 IP，开机即用，零运维负担。', 'Run 24/7 even when your laptop is closed. Pre-configured with your Workbenches, remote MCP gateway, and dedicated static IP.' ) ); ?></p>
+	<!-- 1. 画廊感双栏页头 + 3 格基础设施指标 -->
+	<div class="sc-framed sc-mk-hero">
+		<div class="sc-mk-hero__copy">
+			<span class="sc-kicker">/ <?php echo esc_html( sc_t( '云端 AGENT 托管 · DOT CLOUD BOX', 'CLOUD AGENT HOSTING · DOT BOX' ) ); ?></span>
+			<h1><?php echo esc_html( sc_t( '专属云端 Dot 盒子', 'Private Dot Cloud Box' ) ); ?></h1>
+			<p><?php echo esc_html( sc_t( '电脑关机、断网也能 24 小时持续运行。预装业务工作台、远程 MCP 网关与独立纯净 IP，开机即用，零运维负担。', 'Run 24/7 even when your laptop is closed. Pre-configured with your Workbenches, remote MCP gateway, and dedicated static IP.' ) ); ?></p>
+		</div>
+		<div class="sc-mk-stats">
+			<div class="sc-mk-stat">
+				<strong>99.9%</strong>
+				<span><?php echo esc_html( sc_t( '全年在线率', 'Uptime SLA' ) ); ?></span>
+			</div>
+			<div class="sc-mk-stat">
+				<strong>10 min</strong>
+				<span><?php echo esc_html( sc_t( '极速开机交付', 'Fast setup' ) ); ?></span>
+			</div>
+			<div class="sc-mk-stat">
+				<strong>4 节点</strong>
+				<span><?php echo esc_html( sc_t( '美/新/港/德', 'US/SG/HK/EU' ) ); ?></span>
+			</div>
+		</div>
 	</div>
 
-	<!-- 2. 3 档 Dot 云盒配置对比 -->
-	<div class="sc-framed sc-cloud-plans">
-		<div class="sc-cloud-plan">
-			<span class="sc-kicker">DOT STARTER</span>
-			<h2><?php echo esc_html( sc_t( 'Dot 轻量云盒', 'Dot Starter Box' ) ); ?></h2>
-			<p class="sc-cplan__price">
-				<strong><?php echo sc_price_html( '¥99/月' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
-				<span><?php echo esc_html( sc_t( '适合个人 24/7 常驻运行', 'Ideal for solo 24/7 agents' ) ); ?></span>
-			</p>
-			<ul class="sc-pd-list">
-				<li><?php echo esc_html( sc_t( '2 vCPU · 4 GB 内存 · 60 GB NVMe 固态硬盘', '2 vCPU · 4 GB RAM · 60 GB NVMe SSD' ) ); ?></li>
-				<li><?php echo esc_html( sc_t( '美国硅谷 / 新加坡独立静态 IP', 'Dedicated static IP (US West / Singapore)' ) ); ?></li>
-				<li><?php echo esc_html( sc_t( '预装 1 套已购业务工作台 + 远程 MCP 网关', '1 pre-installed Workbench + remote MCP gateway' ) ); ?></li>
-				<li><?php echo esc_html( sc_t( '自动 HTTPS 证书与 Ed25519 授权预绑定', 'Auto HTTPS & pre-bound Ed25519 license' ) ); ?></li>
-			</ul>
-			<a class="sc-btn sc-btn--outline sc-btn--block" href="#cloud-deploy" data-pick-plan="Dot Starter"><?php echo esc_html( sc_t( '选择此节点方案', 'Select Starter' ) ); ?></a>
-		</div>
+	<!-- 2. 3 档 Dot 云盒高质感悬浮方案卡 -->
+	<div class="sc-framed sc-pricing-stage">
+		<div class="sc-cloud-plans">
+			<div class="sc-cloud-plan">
+				<span class="sc-plan-eyebrow">DOT STARTER</span>
+				<h2><?php echo esc_html( sc_t( 'Dot 轻量云盒', 'Dot Starter Box' ) ); ?></h2>
+				<p class="sc-plan-sub"><?php echo esc_html( sc_t( '适合个人 24/7 常驻运行与远程 MCP', 'Ideal for solo 24/7 agents & remote MCP' ) ); ?></p>
+				<div class="sc-plan-price">
+					<strong><?php echo sc_price_html( '¥99/月' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
+				</div>
+				<ul class="sc-pd-list">
+					<li><?php echo esc_html( sc_t( '2 vCPU · 4 GB 内存 · 60 GB NVMe 固态硬盘', '2 vCPU · 4 GB RAM · 60 GB NVMe SSD' ) ); ?></li>
+					<li><?php echo esc_html( sc_t( '美国硅谷 / 新加坡独立静态 IP', 'Dedicated static IP (US West / Singapore)' ) ); ?></li>
+					<li><?php echo esc_html( sc_t( '预装 1 套已购业务工作台 + 远程 MCP 网关', '1 pre-installed Workbench + remote MCP gateway' ) ); ?></li>
+					<li><?php echo esc_html( sc_t( '自动 HTTPS 证书与 Ed25519 授权预绑定', 'Auto HTTPS & pre-bound Ed25519 license' ) ); ?></li>
+				</ul>
+				<a class="sc-btn sc-btn--outline sc-btn--block" href="#cloud-deploy" data-pick-plan="Dot Starter"><?php echo esc_html( sc_t( '选择轻量云盒', 'Select Starter' ) ); ?></a>
+			</div>
 
-		<div class="sc-cloud-plan sc-cloud-plan--featured">
-			<span class="sc-kicker" style="color:#facc15">★ <?php echo esc_html( sc_t( '最受欢迎 · DOT PRO', 'MOST POPULAR · DOT PRO' ) ); ?></span>
-			<h2><?php echo esc_html( sc_t( 'Dot 旗舰云盒', 'Dot Pro Box' ) ); ?></h2>
-			<p class="sc-cplan__price">
-				<strong><?php echo sc_price_html( '¥249/月' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
-				<span><?php echo esc_html( sc_t( '多工作台 + 浏览器自动化首选', 'Best for multi-desk & browser ops' ) ); ?></span>
-			</p>
-			<ul class="sc-pd-list sc-pd-list--dark">
-				<li><?php echo esc_html( sc_t( '4 vCPU · 8 GB 内存 · 120 GB NVMe 固态硬盘', '4 vCPU · 8 GB RAM · 120 GB NVMe SSD' ) ); ?></li>
-				<li><?php echo esc_html( sc_t( '美西 / 新加坡 / 香港 / 德国节点任选', 'Choice of US, SG, HK, or EU nodes' ) ); ?></li>
-				<li><?php echo esc_html( sc_t( '预装全部已购工作台 + 无头浏览器持久化环境', 'All purchased Workbenches + persistent browser' ) ); ?></li>
-				<li><?php echo esc_html( sc_t( '每日自动快照备份 + 远程 dsh / 桌面端直连', 'Daily snapshots + direct dsh & desktop access' ) ); ?></li>
-			</ul>
-			<a class="sc-btn sc-btn--light sc-btn--block" href="#cloud-deploy" data-pick-plan="Dot Pro"><?php echo esc_html( sc_t( '立即部署旗舰云盒 →', 'Deploy Dot Pro →' ) ); ?></a>
-		</div>
+			<div class="sc-cloud-plan sc-cloud-plan--featured" style="--sc-spot-bg:url('<?php echo esc_url( SKILLCRAFT_URI . '/assets/img/spotlight-bg.jpg' ); ?>')">
+				<span class="sc-plan-eyebrow sc-plan-eyebrow--gold">★ <?php echo esc_html( sc_t( '最受欢迎 · DOT PRO', 'MOST POPULAR · DOT PRO' ) ); ?></span>
+				<h2><?php echo esc_html( sc_t( 'Dot 旗舰云盒', 'Dot Pro Box' ) ); ?></h2>
+				<p class="sc-plan-sub"><?php echo esc_html( sc_t( '多工作台并发 + 浏览器群控自动化首选', 'Best for multi-desk & browser automation' ) ); ?></p>
+				<div class="sc-plan-price">
+					<strong><?php echo sc_price_html( '¥249/月' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
+				</div>
+				<ul class="sc-pd-list sc-pd-list--dark">
+					<li><?php echo esc_html( sc_t( '4 vCPU · 8 GB 内存 · 120 GB NVMe 固态硬盘', '4 vCPU · 8 GB RAM · 120 GB NVMe SSD' ) ); ?></li>
+					<li><?php echo esc_html( sc_t( '美西 / 新加坡 / 香港 / 德国节点任选', 'Choice of US, SG, HK, or EU nodes' ) ); ?></li>
+					<li><?php echo esc_html( sc_t( '预装全部已购工作台 + 无头浏览器持久化环境', 'All purchased Workbenches + persistent browser' ) ); ?></li>
+					<li><?php echo esc_html( sc_t( '每日自动快照备份 + 远程 dsh / 桌面端直连', 'Daily snapshots + direct dsh & desktop access' ) ); ?></li>
+				</ul>
+				<a class="sc-btn sc-btn--light sc-btn--block" href="#cloud-deploy" data-pick-plan="Dot Pro"><?php echo esc_html( sc_t( '立即部署旗舰云盒 →', 'Deploy Dot Pro →' ) ); ?></a>
+			</div>
 
-		<div class="sc-cloud-plan">
-			<span class="sc-kicker">ENTERPRISE CLUSTER</span>
-			<h2><?php echo esc_html( sc_t( '企业私有集群', 'Private Cluster' ) ); ?></h2>
-			<p class="sc-cplan__price">
-				<strong><?php echo sc_price_html( '¥699/月' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
-				<span><?php echo esc_html( sc_t( '多节点集群与私有知识库', 'Multi-node fleet & private RAG' ) ); ?></span>
-			</p>
-			<ul class="sc-pd-list">
-				<li><?php echo esc_html( sc_t( '8 vCPU · 16 GB 内存起，按需弹性扩容', '8+ vCPU · 16+ GB RAM with elastic scaling' ) ); ?></li>
-				<li><?php echo esc_html( sc_t( '独立 VPC 隔离 + 多地区出口 IP 池', 'Private VPC isolation + multi-region IP pool' ) ); ?></li>
-				<li><?php echo esc_html( sc_t( '支持团队多成员 RBAC 权限与私有知识库托管', 'Team RBAC permissions & private vector KB' ) ); ?></li>
-				<li><?php echo esc_html( sc_t( '7×24 专属运维巡检与 SLA 可用性保障', '24/7 managed ops & SLA uptime guarantee' ) ); ?></li>
-			</ul>
-			<a class="sc-btn sc-btn--outline sc-btn--block" href="#cloud-deploy" data-pick-plan="Enterprise Cluster"><?php echo esc_html( sc_t( '预约集群部署', 'Request Cluster' ) ); ?></a>
+			<div class="sc-cloud-plan">
+				<span class="sc-plan-eyebrow">ENTERPRISE CLUSTER</span>
+				<h2><?php echo esc_html( sc_t( '企业私有集群', 'Private Cluster' ) ); ?></h2>
+				<p class="sc-plan-sub"><?php echo esc_html( sc_t( '多节点高可用集群与企业私有知识库', 'Multi-node fleet & private vector RAG' ) ); ?></p>
+				<div class="sc-plan-price">
+					<strong><?php echo sc_price_html( '¥699/月' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
+				</div>
+				<ul class="sc-pd-list">
+					<li><?php echo esc_html( sc_t( '8 vCPU · 16 GB 内存起，按需弹性扩容', '8+ vCPU · 16+ GB RAM with elastic scaling' ) ); ?></li>
+					<li><?php echo esc_html( sc_t( '独立 VPC 隔离 + 多地区出口 IP 池', 'Private VPC isolation + multi-region IP pool' ) ); ?></li>
+					<li><?php echo esc_html( sc_t( '支持团队多成员 RBAC 权限与私有知识库托管', 'Team RBAC permissions & private vector KB' ) ); ?></li>
+					<li><?php echo esc_html( sc_t( '7×24 专属运维巡检与 SLA 可用性保障', '24/7 managed ops & SLA uptime guarantee' ) ); ?></li>
+				</ul>
+				<a class="sc-btn sc-btn--outline sc-btn--block" href="#cloud-deploy" data-pick-plan="Enterprise Cluster"><?php echo esc_html( sc_t( '预约集群部署', 'Request Cluster' ) ); ?></a>
+			</div>
 		</div>
 	</div>
 
