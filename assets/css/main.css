@@ -5497,3 +5497,42 @@ button { font-family: inherit; }
 }
 
 .sc-curr-menu em[hidden] { display: none; }
+
+
+/* 购买弹窗：注册/登录双 Tab + 订单结果隐藏修复 */
+.sc-modal-tabs {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	padding: 3px;
+	background: #f0f1f4;
+	border: 1px solid var(--sc-line-strong);
+	border-radius: var(--sc-radius-sm);
+}
+
+.sc-modal-tab {
+	border: 0;
+	background: transparent;
+	padding: 7px 12px;
+	border-radius: 5px;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--sc-muted-2);
+	cursor: pointer;
+}
+
+.sc-modal-tab.is-active {
+	background: #ffffff;
+	color: var(--sc-ink);
+	font-weight: 600;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+[data-auth-modal-pane][hidden],
+.sc-order-result[hidden] {
+	display: none !important;
+}
+
+.sc-order-result {
+	display: grid;
+	gap: 12px;
+}

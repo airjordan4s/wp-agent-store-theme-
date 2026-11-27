@@ -324,7 +324,11 @@ $pd_heat  = $post_id ? ( (int) get_post_meta( $post_id, '_sc_heat', true ) ?: 99
 	</div>
 </section>
 
-<!-- 购买下单与自动发货弹窗 -->
+<!-- 购买弹窗：未登录先弹出「注册 / 登录」双 Tab 门禁，已登录直接确认下单 -->
+<?php
+$logged_in   = is_user_logged_in();
+$cur_url     = function_exists( 'get_permalink' ) && $post_id ? get_permalink( $post_id ) : home_url( '/product/' );
+?>
 <div class="sc-modal" id="sc-buyModal" hidden role="dialog" aria-modal="true" aria-labelledby="sc-buyModalTitle"
      data-skill-id="<?php echo esc_attr( $post_id ); ?>"
      data-skill-title="<?php echo esc_attr( $title ); ?>"
@@ -332,30 +336,85 @@ $pd_heat  = $post_id ? ( (int) get_post_meta( $post_id, '_sc_heat', true ) ?: 99
      data-install-cmd="<?php echo esc_attr( $install_cmd ); ?>">
 	<div class="sc-modal__backdrop" data-close-modal></div>
 	<div class="sc-modal__box">
-		<div class="sc-modal__head">
-			<h3 id="sc-buyModalTitle"><?php echo esc_html( sc_t( '确认下单并自动发货', 'Checkout & Instant Delivery' ) ); ?></h3>
-			<button type="button" class="sc-modal__close" data-close-modal aria-label="<?php echo esc_attr( sc_t( '关闭', 'Close' ) ); ?>">×</button>
-		</div>
-		<p class="sc-modal__desc">
-			<?php echo esc_html( sprintf( sc_t( '商品：%1$s（%2$s %3$s）。填写收货邮箱后点击确认，系统将自动创建订单并生成你的专属授权码与启动指令：', 'Item: %1$s (%2$s %3$s). Enter your email to generate your order and personal license key:' ), $title, $billing, $price ) ); ?>
-		</p>
-		<form id="sc-orderForm" class="sc-form">
-			<div class="sc-field">
-				<label for="sc-orderEmail"><?php echo esc_html( sc_t( '接收授权码的邮箱', 'Delivery email' ) ); ?></label>
-				<input class="sc-input" id="sc-orderEmail" type="email" required placeholder="name@company.com"
-				       value="<?php echo esc_attr( is_user_logged_in() ? wp_get_current_user()->user_email : '' ); ?>">
+		<?php if ( ! $logged_in ) : ?>
+			<div class="sc-modal__head">
+				<h3 id="sc-buyModalTitle"><?php echo esc_html( sc_t( '请先注册或登录账户', 'Sign up or sign in to continue' ) ); ?></h3>
+				<button type="button" class="sc-modal__close" data-close-modal aria-label="<?php echo esc_attr( sc_t( '关闭', 'Close' ) ); ?>">×</button>
 			</div>
-			<button type="submit" class="sc-btn sc-btn--dark sc-btn--block" id="sc-orderSubmit">
-				<?php echo esc_html( sprintf( sc_t( '确认下单并获取授权（%s）', 'Confirm order (%s)' ), $price ) ); ?>
-			</button>
-		</form>
-		<div id="sc-orderResult" hidden style="display:grid;gap:12px">
-			<div class="sc-alert sc-alert--success" id="sc-orderMsg" style="margin:0"></div>
-			<pre class="sc-code-block" id="sc-orderCmd"></pre>
-			<button type="button" class="sc-btn sc-btn--dark sc-btn--block" id="sc-copyOrderCmd">
-				<?php echo esc_html( sc_t( '复制专属启动指令', 'Copy launch command' ) ); ?>
-			</button>
-		</div>
+			<p class="sc-modal__desc">
+				<?php echo esc_html( sc_t( '为确保你的专属授权码、设备绑定与后续版本更新永久归档不丢失，购买前请先完成注册或登录：', 'Create a free account or sign in so your license key, device slots, and free updates stay safely linked to you:' ) ); ?>
+			</p>
+
+			<div class="sc-modal-tabs" role="tablist">
+				<button type="button" class="sc-modal-tab is-active" data-auth-modal-tab="signup" role="tab" aria-selected="true"><?php echo esc_html( sc_t( '快速注册', 'Create account' ) ); ?></button>
+				<button type="button" class="sc-modal-tab" data-auth-modal-tab="login" role="tab" aria-selected="false"><?php echo esc_html( sc_t( '已有账号登录', 'Sign in' ) ); ?></button>
+			</div>
+
+			<!-- Tab 1：快速注册（对接 WP 原生注册并自动返回当前商品页） -->
+			<form class="sc-form" method="post" action="<?php echo esc_url( sc_signup_url() ); ?>" data-auth-modal-pane="signup">
+				<?php wp_nonce_field( 'sc_auth_signup', 'sc_auth_nonce' ); ?>
+				<input type="hidden" name="sc_auth_action" value="signup">
+				<input type="hidden" name="redirect_to" value="<?php echo esc_url( $cur_url ); ?>">
+				<div class="sc-field">
+					<label for="sc-m-name"><?php echo esc_html( sc_t( '你的昵称', 'Display name' ) ); ?></label>
+					<input class="sc-input" id="sc-m-name" name="sc_name" type="text" required placeholder="<?php echo esc_attr( sc_t( '例如：林致远', 'Alex Lin' ) ); ?>">
+				</div>
+				<div class="sc-field">
+					<label for="sc-m-email"><?php echo esc_html( sc_t( '工作邮箱（用于接收授权码）', 'Email (for license delivery)' ) ); ?></label>
+					<input class="sc-input" id="sc-m-email" name="sc_email" type="email" required placeholder="name@company.com">
+				</div>
+				<div class="sc-field">
+					<label for="sc-m-pass"><?php echo esc_html( sc_t( '设置密码', 'Password' ) ); ?></label>
+					<input class="sc-input" id="sc-m-pass" name="sc_password" type="password" required minlength="8" placeholder="<?php echo esc_attr( sc_t( '至少 8 位字符', 'At least 8 characters' ) ); ?>">
+				</div>
+				<button type="submit" class="sc-btn sc-btn--dark sc-btn--block">
+					<?php echo esc_html( sc_t( '注册并继续购买 →', 'Sign up & continue →' ) ); ?>
+				</button>
+			</form>
+
+			<!-- Tab 2：已有账号登录 -->
+			<form class="sc-form" method="post" action="<?php echo esc_url( sc_login_url( $cur_url ) ); ?>" data-auth-modal-pane="login" hidden>
+				<?php wp_nonce_field( 'sc_auth_login', 'sc_auth_nonce' ); ?>
+				<input type="hidden" name="sc_auth_action" value="login">
+				<input type="hidden" name="redirect_to" value="<?php echo esc_url( $cur_url ); ?>">
+				<div class="sc-field">
+					<label for="sc-m-login"><?php echo esc_html( sc_t( '邮箱或用户名', 'Email or username' ) ); ?></label>
+					<input class="sc-input" id="sc-m-login" name="sc_login" type="text" required placeholder="name@company.com">
+				</div>
+				<div class="sc-field">
+					<label for="sc-m-lpass"><?php echo esc_html( sc_t( '密码', 'Password' ) ); ?></label>
+					<input class="sc-input" id="sc-m-lpass" name="sc_password" type="password" required placeholder="<?php echo esc_attr( sc_t( '输入你的密码', 'Enter your password' ) ); ?>">
+				</div>
+				<button type="submit" class="sc-btn sc-btn--dark sc-btn--block">
+					<?php echo esc_html( sc_t( '登录并继续购买 →', 'Sign in & continue →' ) ); ?>
+				</button>
+			</form>
+		<?php else : ?>
+			<div class="sc-modal__head">
+				<h3 id="sc-buyModalTitle"><?php echo esc_html( sc_t( '确认下单并自动发货', 'Checkout & Instant Delivery' ) ); ?></h3>
+				<button type="button" class="sc-modal__close" data-close-modal aria-label="<?php echo esc_attr( sc_t( '关闭', 'Close' ) ); ?>">×</button>
+			</div>
+			<p class="sc-modal__desc">
+				<?php echo esc_html( sprintf( sc_t( '商品：%1$s（%2$s）。确认收货邮箱后点击下单，系统将自动生成专属授权码并同步到你的会员中心：', 'Item: %1$s (%2$s). Confirm your delivery email to generate your license key and sync it to your Account:' ), $title, $billing ) ); ?>
+			</p>
+			<form id="sc-orderForm" class="sc-form">
+				<div class="sc-field">
+					<label for="sc-orderEmail"><?php echo esc_html( sc_t( '接收授权码的邮箱', 'Delivery email' ) ); ?></label>
+					<input class="sc-input" id="sc-orderEmail" type="email" required placeholder="name@company.com"
+					       value="<?php echo esc_attr( wp_get_current_user()->user_email ); ?>">
+				</div>
+				<button type="submit" class="sc-btn sc-btn--dark sc-btn--block" id="sc-orderSubmit">
+					<?php echo esc_html( sc_t( '确认下单并获取授权（', 'Confirm order (' ) ); ?><?php echo sc_price_html( $price ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo esc_html( sc_t( '）', ')' ) ); ?>
+				</button>
+			</form>
+			<div id="sc-orderResult" class="sc-order-result" hidden>
+				<div class="sc-alert sc-alert--success" id="sc-orderMsg" style="margin:0"></div>
+				<pre class="sc-code-block" id="sc-orderCmd"></pre>
+				<button type="button" class="sc-btn sc-btn--dark sc-btn--block" id="sc-copyOrderCmd">
+					<?php echo esc_html( sc_t( '复制专属启动指令', 'Copy launch command' ) ); ?>
+				</button>
+			</div>
+		<?php endif; ?>
 	</div>
 </div>
 

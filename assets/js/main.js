@@ -692,6 +692,24 @@
 		});
 	}
 
+	/* 13.10 购买弹窗内「快速注册 / 已有账号登录」Tab 切换 */
+	var authModalTabs = document.querySelectorAll('[data-auth-modal-tab]');
+	if (authModalTabs.length) {
+		authModalTabs.forEach(function (tab) {
+			tab.addEventListener('click', function () {
+				var target = tab.getAttribute('data-auth-modal-tab');
+				authModalTabs.forEach(function (b) {
+					var on = b === tab;
+					b.classList.toggle('is-active', on);
+					b.setAttribute('aria-selected', on ? 'true' : 'false');
+				});
+				document.querySelectorAll('[data-auth-modal-pane]').forEach(function (pane) {
+					pane.hidden = pane.getAttribute('data-auth-modal-pane') !== target;
+				});
+			});
+		});
+	}
+
 	/* 14. 滚动显现 */
 	var reveals = document.querySelectorAll('[data-reveal]');
 	if ('IntersectionObserver' in window) {
