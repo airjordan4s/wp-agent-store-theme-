@@ -189,7 +189,7 @@ $faqs     = sc_faqs();
 							<a class="sc-pill" href="<?php echo esc_url( home_url( '/product/' ) ); ?>">
 								<div class="sc-pill__head">
 									<span class="sc-pill__name"><?php echo esc_html( sc_t( $pill['name'], $pill['name_en'] ) ); ?></span>
-									<span class="sc-pill__price"><?php echo esc_html( $pill['price'] ); ?></span>
+									<span class="sc-pill__price"><?php echo sc_price_html( $pill['price'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 								</div>
 								<p class="sc-pill__desc"><?php echo esc_html( sc_t( $pill['desc'], $pill['desc_en'] ) ); ?></p>
 							</a>
@@ -322,7 +322,7 @@ $faqs     = sc_faqs();
 							<path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V4h9l8.6 8.6a2 2 0 0 1 0 .8z" stroke="currentColor" stroke-width="1.6"/>
 							<circle cx="7.5" cy="8.5" r="1.2" fill="currentColor"/>
 						</svg>
-						<strong><?php echo esc_html( $p['price'] ); ?></strong>
+						<strong><?php echo sc_price_html( $p['price'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
 					</span>
 				</div>
 			</a>

@@ -29,7 +29,9 @@
 				setLangMenu(false);
 				if (want === cfg.lang) return;
 				try {
+					var defCcy = (want === 'en') ? 'USD' : 'CNY';
 					document.cookie = 'skillcraft_lang=' + want + '; path=/; max-age=' + (60 * 60 * 24 * 365) + '; SameSite=Lax';
+					document.cookie = 'skillcraft_currency=' + defCcy + '; path=/; max-age=' + (60 * 60 * 24 * 365) + '; SameSite=Lax';
 				} catch (e) {}
 				if (/\.html$/i.test(location.pathname)) {
 					if (want === 'en' && !/-en\.html$/i.test(location.pathname)) {
@@ -639,6 +641,55 @@
 			lb.addEventListener('click', function (e) { if (e.target === lb) lb.hidden = true; });
 			document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) lb.hidden = true; });
 		}
+	}
+
+	/* 13.9 货币无刷新实时切换（CNY ⇄ USD） */
+	var currBtn = document.getElementById('sc-currSwitch');
+	var currMenu = document.getElementById('sc-currMenu');
+	var currLabel = document.getElementById('sc-currLabel');
+	var applyCurrency = function (ccy) {
+		var code = (ccy === 'USD') ? 'USD' : 'CNY';
+		if (currBtn) currBtn.setAttribute('data-currency', code);
+		if (currLabel) currLabel.textContent = (code === 'USD') ? '$ USD' : '¥ CNY';
+		document.querySelectorAll('[data-price-cny][data-price-usd]').forEach(function (el) {
+			el.textContent = (code === 'USD') ? el.getAttribute('data-price-usd') : el.getAttribute('data-price-cny');
+		});
+		if (currMenu) {
+			currMenu.querySelectorAll('[data-set-currency]').forEach(function (b) {
+				var on = b.getAttribute('data-set-currency') === code;
+				b.classList.toggle('is-active', on);
+				var chk = b.querySelector('[data-curr-check]');
+				if (chk) chk.hidden = !on;
+			});
+		}
+	};
+	if (currBtn && currMenu) {
+		// 若用户有手动选择的 Cookie，页面加载时立刻同步
+		var mCcy = document.cookie.match(/(?:^|;\s*)skillcraft_currency=(CNY|USD)/i);
+		if (mCcy && mCcy[1]) {
+			applyCurrency(mCcy[1].toUpperCase());
+		}
+		currBtn.addEventListener('click', function (e) {
+			e.stopPropagation();
+			var open = currMenu.hidden;
+			currMenu.hidden = !open;
+			currBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+		});
+		currMenu.querySelectorAll('[data-set-currency]').forEach(function (item) {
+			item.addEventListener('click', function () {
+				var want = item.getAttribute('data-set-currency') || 'CNY';
+				document.cookie = 'skillcraft_currency=' + want + '; path=/; max-age=' + (60 * 60 * 24 * 365) + '; SameSite=Lax';
+				applyCurrency(want);
+				currMenu.hidden = true;
+				currBtn.setAttribute('aria-expanded', 'false');
+			});
+		});
+		document.addEventListener('click', function (e) {
+			if (!currMenu.hidden && !currBtn.contains(e.target) && !currMenu.contains(e.target)) {
+				currMenu.hidden = true;
+				currBtn.setAttribute('aria-expanded', 'false');
+			}
+		});
 	}
 
 	/* 14. 滚动显现 */

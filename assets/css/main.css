@@ -5464,3 +5464,36 @@ button { font-family: inherit; }
 	line-height: 1;
 	cursor: pointer;
 }
+
+
+/* 顶栏极简货币切换器（CNY / USD） */
+.sc-curr-drop {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+}
+
+.sc-curr-btn {
+	height: 32px;
+	padding: 0 10px;
+	border: 1px solid var(--sc-line-strong);
+	border-radius: 999px;
+	background: var(--sc-bg);
+	color: var(--sc-ink);
+	font-family: var(--sc-font-mono);
+	font-size: 12px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 150ms, border-color 150ms;
+}
+
+.sc-curr-btn:hover {
+	background: #ffffff;
+	border-color: var(--sc-ink);
+}
+
+.sc-curr-menu {
+	min-width: 158px;
+}
+
+.sc-curr-menu em[hidden] { display: none; }

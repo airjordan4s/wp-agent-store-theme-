@@ -29,6 +29,7 @@ function sc_default_content() {
 		'show_envelope'       => 1,
 		'show_blog_comments'  => 1,
 		'blog_default_layout' => 'grid',
+		'usd_rate'            => '7.2',
 
 		// Hero 区
 		'hero_title'          => "为每种业务，打造\n开箱即用的 AI 工作台",
@@ -340,12 +341,18 @@ function sc_render_admin_page() {
 							<label><input type="checkbox" name="sc[<?php echo esc_attr( $k ); ?>]" value="1" <?php checked( ! empty( $c[ $k ] ) ); ?>> <?php echo esc_html( $label ); ?></label>
 						<?php endforeach; ?>
 					</div>
-					<div class="sc-adm-field" style="margin-top:14px;max-width:320px">
-						<label>博客列表默认展示模式（前台访客仍可自由切换）</label>
-						<select name="sc[blog_default_layout]">
-							<option value="grid" <?php selected( $c['blog_default_layout'] ?? 'grid', 'grid' ); ?>>卡片画廊模式（3 列封面卡）</option>
-							<option value="list" <?php selected( $c['blog_default_layout'] ?? 'grid', 'list' ); ?>>极简列表模式（单列架构行）</option>
-						</select>
+					<div class="sc-adm-grid" style="margin-top:14px">
+						<div class="sc-adm-field">
+							<label>博客列表默认展示模式（前台访客仍可自由切换）</label>
+							<select name="sc[blog_default_layout]">
+								<option value="grid" <?php selected( $c['blog_default_layout'] ?? 'grid', 'grid' ); ?>>卡片画廊模式（3 列封面卡）</option>
+								<option value="list" <?php selected( $c['blog_default_layout'] ?? 'grid', 'list' ); ?>>极简列表模式（单列架构行）</option>
+							</select>
+						</div>
+						<div class="sc-adm-field">
+							<label>美元汇率（1 USD = ? CNY，英文默认展示 USD）</label>
+							<input type="text" name="sc[usd_rate]" value="<?php echo esc_attr( $c['usd_rate'] ?? '7.2' ); ?>" placeholder="7.2">
+						</div>
 					</div>
 				</div>
 

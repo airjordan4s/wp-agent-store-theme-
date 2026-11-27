@@ -44,6 +44,26 @@
 			}
 			?>
 
+			<div class="sc-curr-drop" id="sc-currDrop">
+				<?php $cur_ccy = sc_current_currency(); ?>
+				<button type="button" class="sc-curr-btn" id="sc-currSwitch"
+				        aria-haspopup="menu" aria-expanded="false"
+				        data-currency="<?php echo esc_attr( $cur_ccy ); ?>"
+				        aria-label="<?php echo esc_attr( sc_t( '切换货币', 'Switch currency' ) ); ?>">
+					<span id="sc-currLabel"><?php echo esc_html( 'USD' === $cur_ccy ? '$ USD' : '¥ CNY' ); ?></span>
+				</button>
+				<div class="sc-lang-menu sc-curr-menu" id="sc-currMenu" role="menu" hidden>
+					<button type="button" class="sc-lang-menu__item <?php echo 'CNY' === $cur_ccy ? 'is-active' : ''; ?>" role="menuitem" data-set-currency="CNY">
+						<span>¥ CNY · 人民币</span>
+						<em data-curr-check="CNY" <?php echo 'CNY' === $cur_ccy ? '' : 'hidden'; ?>>✓</em>
+					</button>
+					<button type="button" class="sc-lang-menu__item <?php echo 'USD' === $cur_ccy ? 'is-active' : ''; ?>" role="menuitem" data-set-currency="USD">
+						<span>$ USD · US Dollar</span>
+						<em data-curr-check="USD" <?php echo 'USD' === $cur_ccy ? '' : 'hidden'; ?>>✓</em>
+					</button>
+				</div>
+			</div>
+
 			<div class="sc-lang-drop" id="sc-langDrop">
 				<button type="button" class="sc-lang-globe" id="sc-langSwitch"
 				        aria-haspopup="menu" aria-expanded="false"

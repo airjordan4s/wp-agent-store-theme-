@@ -143,7 +143,10 @@ function sc_seo_build_jsonld( $site, $desc, $url, $img ) {
 	// 商品详情页：SoftwareApplication + Offer + BreadcrumbList
 	if ( is_singular( 'sc_skill' ) ) {
 		$id       = get_queried_object_id();
-		$price    = sc_parse_numeric_price( get_post_meta( $id, '_sc_price', true ) ?: '299' );
+		$cur_ccy  = function_exists( 'sc_current_currency' ) ? sc_current_currency() : 'CNY';
+		$raw_p    = get_post_meta( $id, '_sc_price', true ) ?: '299';
+		$conv_p   = function_exists( 'sc_convert_price' ) ? sc_convert_price( $raw_p, $cur_ccy ) : $raw_p;
+		$price    = sc_parse_numeric_price( $conv_p );
 		$clients  = get_post_meta( $id, '_sc_clients', true ) ?: 'Windows, macOS, Web, Cursor, Claude, Codex';
 		$cat_key  = get_post_meta( $id, '_sc_cat', true ) ?: 'workbench';
 		$app_cat  = 'workbench' === $cat_key ? 'BusinessApplication' : 'DeveloperApplication';
@@ -159,7 +162,7 @@ function sc_seo_build_jsonld( $site, $desc, $url, $img ) {
 			'offers'              => array(
 				'@type'         => 'Offer',
 				'price'         => $price,
-				'priceCurrency' => 'CNY',
+				'priceCurrency' => $cur_ccy,
 				'availability'  => 'https://schema.org/InStock',
 				'url'           => $url,
 			),

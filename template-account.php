@@ -233,7 +233,7 @@ $sync_cmd    = 'npx @skillcraft/cli sync --account ' . $user->user_login;
 										</div>
 									</div>
 									<div class="sc-acc-orderrow__act">
-										<strong class="sc-acc-price"><?php echo esc_html( $ord['price'] ); ?></strong>
+										<strong class="sc-acc-price"><?php echo sc_price_html( $ord['price'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
 										<button type="button" class="sc-copy-btn" data-copy-text="<?php echo esc_attr( $full_cmd ); ?>">
 											<?php echo esc_html( sc_t( '复制口令', 'Copy cmd' ) ); ?>
 										</button>

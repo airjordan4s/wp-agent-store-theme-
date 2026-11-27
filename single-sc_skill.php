@@ -240,7 +240,7 @@ $pd_heat  = $post_id ? ( (int) get_post_meta( $post_id, '_sc_heat', true ) ?: 99
 		<aside class="sc-pd-side">
 			<div class="sc-pd-buycard">
 				<div class="sc-pd-buycard__price">
-					<strong><?php echo esc_html( $price ); ?></strong>
+					<strong><?php echo sc_price_html( $price ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
 					<span><?php echo esc_html( $billing ); ?></span>
 				</div>
 				<p class="sc-pd-buycard__note">
@@ -304,7 +304,7 @@ $pd_heat  = $post_id ? ( (int) get_post_meta( $post_id, '_sc_heat', true ) ?: 99
 							<a class="sc-pd-rec" href="<?php echo esc_url( $rec_url ); ?>">
 								<div class="sc-pd-rec__top">
 									<strong><?php echo esc_html( $rec_title ); ?></strong>
-									<span class="sc-pd-rec__price"><?php echo esc_html( $rec['price'] ); ?></span>
+									<span class="sc-pd-rec__price"><?php echo sc_price_html( $rec['price'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 								</div>
 								<p class="sc-pd-rec__desc"><?php echo esc_html( $rec_desc ); ?></p>
 								<div class="sc-pd-rec__meta">
