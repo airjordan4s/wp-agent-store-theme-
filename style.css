@@ -1,0 +1,16 @@
+/*
+Theme Name: SkillCraft
+Theme URI:  https://example.com/skillcraft
+Author:     SkillCraft
+Description: 瑞士建筑网格风格的 AI Skill 交易与分发 WordPress 主题。浅灰画布 + 贯穿 1px 参考线 + 纯黑高反差步骤区 + 拟物档案袋交互，内置登录/注册/用户中心与中英双语切换，100% 原创手写实现。
+Version:    1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 7.4
+License:    GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: skillcraft
+Tags: custom-logo, custom-menu, featured-images, translation-ready
+*/
+
+/* 主样式通过 wp_enqueue_style 加载 assets/css/main.css */

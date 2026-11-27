@@ -1,0 +1,10 @@
+# Local static preview build (regenerate via `php tools/preview.php`)
+preview/
+
+# OS & editor artifacts
+.DS_Store
+Thumbs.db
+*.zip
+*.log
+.vscode/
+.idea/
