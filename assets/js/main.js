@@ -650,7 +650,7 @@
 	var applyCurrency = function (ccy) {
 		var code = (ccy === 'USD') ? 'USD' : 'CNY';
 		if (currBtn) currBtn.setAttribute('data-currency', code);
-		if (currLabel) currLabel.textContent = (code === 'USD') ? '$ USD' : '¥ CNY';
+		if (currLabel) currLabel.textContent = (code === 'USD') ? '$' : '¥';
 		document.querySelectorAll('[data-price-cny][data-price-usd]').forEach(function (el) {
 			el.textContent = (code === 'USD') ? el.getAttribute('data-price-usd') : el.getAttribute('data-price-cny');
 		});

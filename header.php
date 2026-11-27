@@ -51,15 +51,15 @@
 				        aria-haspopup="menu" aria-expanded="false"
 				        data-currency="<?php echo esc_attr( $cur_ccy ); ?>"
 				        aria-label="<?php echo esc_attr( sc_t( '切换货币', 'Switch currency' ) ); ?>">
-					<span id="sc-currLabel"><?php echo esc_html( 'USD' === $cur_ccy ? '$ USD' : '¥ CNY' ); ?></span>
+					<span id="sc-currLabel"><?php echo esc_html( 'USD' === $cur_ccy ? '$' : '¥' ); ?></span>
 				</button>
 				<div class="sc-lang-menu sc-curr-menu" id="sc-currMenu" role="menu" hidden>
 					<button type="button" class="sc-lang-menu__item <?php echo 'CNY' === $cur_ccy ? 'is-active' : ''; ?>" role="menuitem" data-set-currency="CNY">
-						<span>¥ CNY · 人民币</span>
+						<span>¥ CNY</span>
 						<em data-curr-check="CNY" <?php echo 'CNY' === $cur_ccy ? '' : 'hidden'; ?>>✓</em>
 					</button>
 					<button type="button" class="sc-lang-menu__item <?php echo 'USD' === $cur_ccy ? 'is-active' : ''; ?>" role="menuitem" data-set-currency="USD">
-						<span>$ USD · US Dollar</span>
+						<span>$ USD</span>
 						<em data-curr-check="USD" <?php echo 'USD' === $cur_ccy ? '' : 'hidden'; ?>>✓</em>
 					</button>
 				</div>
@@ -76,11 +76,42 @@
 				</button>
 				<div class="sc-lang-menu" id="sc-langMenu" role="menu" hidden>
 					<button type="button" class="sc-lang-menu__item <?php echo 'zh' === sc_current_lang() ? 'is-active' : ''; ?>" role="menuitem" data-lang="zh">
-						<span>简体中文</span>
+						<span class="sc-lang-opt">
+							<svg class="sc-flag" width="18" height="13" viewBox="0 0 30 20" aria-hidden="true">
+								<rect width="30" height="20" rx="2" fill="#de2910"/>
+								<polygon points="5,2.5 5.9,5.2 8.7,5.2 6.4,6.8 7.3,9.5 5,7.9 2.7,9.5 3.6,6.8 1.3,5.2 4.1,5.2" fill="#ffde00"/>
+								<circle cx="10.2" cy="2.6" r="0.8" fill="#ffde00"/>
+								<circle cx="12" cy="4.4" r="0.8" fill="#ffde00"/>
+								<circle cx="12" cy="7" r="0.8" fill="#ffde00"/>
+								<circle cx="10.2" cy="8.8" r="0.8" fill="#ffde00"/>
+							</svg>
+							简体中文
+						</span>
 						<?php if ( 'zh' === sc_current_lang() ) : ?><em>✓</em><?php endif; ?>
 					</button>
 					<button type="button" class="sc-lang-menu__item <?php echo 'en' === sc_current_lang() ? 'is-active' : ''; ?>" role="menuitem" data-lang="en">
-						<span>English</span>
+						<span class="sc-lang-opt">
+							<svg class="sc-flag" width="18" height="13" viewBox="0 0 30 20" aria-hidden="true">
+								<rect width="30" height="20" rx="2" fill="#ffffff"/>
+								<g fill="#b22234">
+									<rect y="0" width="30" height="1.54"/>
+									<rect y="3.08" width="30" height="1.54"/>
+									<rect y="6.15" width="30" height="1.54"/>
+									<rect y="9.23" width="30" height="1.54"/>
+									<rect y="12.31" width="30" height="1.54"/>
+									<rect y="15.38" width="30" height="1.54"/>
+									<rect y="18.46" width="30" height="1.54"/>
+								</g>
+								<rect width="12.5" height="10.8" rx="1" fill="#3c3b6e"/>
+								<g fill="#ffffff">
+									<circle cx="2.5" cy="2.2" r="0.6"/><circle cx="5.2" cy="2.2" r="0.6"/><circle cx="7.9" cy="2.2" r="0.6"/><circle cx="10.4" cy="2.2" r="0.6"/>
+									<circle cx="3.8" cy="4.4" r="0.6"/><circle cx="6.5" cy="4.4" r="0.6"/><circle cx="9.2" cy="4.4" r="0.6"/>
+									<circle cx="2.5" cy="6.6" r="0.6"/><circle cx="5.2" cy="6.6" r="0.6"/><circle cx="7.9" cy="6.6" r="0.6"/><circle cx="10.4" cy="6.6" r="0.6"/>
+									<circle cx="3.8" cy="8.8" r="0.6"/><circle cx="6.5" cy="8.8" r="0.6"/><circle cx="9.2" cy="8.8" r="0.6"/>
+								</g>
+							</svg>
+							English
+						</span>
 						<?php if ( 'en' === sc_current_lang() ) : ?><em>✓</em><?php endif; ?>
 					</button>
 				</div>
