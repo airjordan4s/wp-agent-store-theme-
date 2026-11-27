@@ -4779,12 +4779,19 @@ button { font-family: inherit; }
 }
 
 
-/* 宽敞大气的 4 列瑞士建筑页脚 */
+/* 宽敞大气的 4 列瑞士建筑页脚（全宽舒展布局） */
+.sc-footer .sc-framed {
+	max-width: 1440px;
+	width: 100%;
+	border-left: 0;
+	border-right: 0;
+}
+
 .sc-footer__top {
-	padding: 56px clamp(20px, 4vw, 48px) 44px;
+	padding: 60px clamp(24px, 4vw, 64px) 48px;
 	display: grid;
-	grid-template-columns: 1.7fr repeat(3, minmax(0, 1fr));
-	gap: 36px;
+	grid-template-columns: 1.8fr repeat(3, minmax(0, 1fr));
+	gap: 48px;
 	border-bottom: 1px solid var(--sc-line);
 }
 
@@ -4795,26 +4802,26 @@ button { font-family: inherit; }
 }
 
 .sc-footer__brand .sc-footer__slogan {
-	font-size: 13px;
-	line-height: 1.65;
-	max-width: 34ch;
+	font-size: 13.5px;
+	line-height: 1.7;
+	max-width: 40ch;
 }
 
 .sc-footer__col {
 	display: grid;
-	gap: 10px;
+	gap: 11px;
 	align-content: start;
 }
 
 .sc-footer__col strong {
-	font-size: 13px;
+	font-size: 13.5px;
 	font-weight: 600;
 	color: var(--sc-ink);
 	margin-bottom: 2px;
 }
 
 .sc-footer__col a {
-	font-size: 13px;
+	font-size: 13.5px;
 	color: var(--sc-muted-2);
 	transition: color 150ms;
 }
@@ -4822,13 +4829,13 @@ button { font-family: inherit; }
 .sc-footer__col a:hover { color: var(--sc-ink); }
 
 .sc-footer__bottom {
-	padding: 20px clamp(20px, 4vw, 48px);
+	padding: 22px clamp(24px, 4vw, 64px);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 16px;
 	flex-wrap: wrap;
-	font-size: 12px;
+	font-size: 12.5px;
 	color: var(--sc-muted);
 }
 
