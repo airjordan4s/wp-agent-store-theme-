@@ -5580,3 +5580,18 @@ button { font-family: inherit; }
 	.sc-cloud-plan,
 	.sc-cloud-feats .sc-cstep { border-right: 0; border-bottom: 1px solid var(--sc-line); padding: 28px 20px; }
 }
+
+
+/* 作品集市「镇店精选」Spotlight 暗黑流光背景图增强 */
+.sc-mk-spotlight {
+	background:
+		linear-gradient(96deg, rgba(11, 12, 16, 0.88) 0%, rgba(11, 12, 16, 0.62) 52%, rgba(11, 12, 16, 0.35) 100%),
+		var(--sc-spot-bg) center / cover no-repeat,
+		#111111;
+}
+
+.sc-mk-spotlight .sc-mk-term {
+	background: rgba(18, 19, 24, 0.78);
+	backdrop-filter: blur(12px);
+	border-color: rgba(255, 255, 255, 0.16);
+}

@@ -54,8 +54,8 @@ if ( ! function_exists( 'sc_market_icon' ) ) {
 		</div>
 	</div>
 
-	<!-- 2. 暗黑高反差「镇店精选」Spotlight 卡片（带工作台实机缩略界面） -->
-	<div class="sc-framed sc-mk-spotlight">
+	<!-- 2. 暗黑高反差「镇店精选」Spotlight 卡片（带高质感暗黑流光背景图 + 工作台实机缩略界面） -->
+	<div class="sc-framed sc-mk-spotlight" style="--sc-spot-bg:url('<?php echo esc_url( SKILLCRAFT_URI . '/assets/img/spotlight-bg.jpg' ); ?>')">
 		<div class="sc-mk-spot__left">
 			<div class="sc-mk-spot__eyebrow">
 				<span class="sc-mk-spot__dot"></span>
