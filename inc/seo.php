@@ -269,6 +269,7 @@ function sc_render_llms_txt() {
 		'## 核心页面',
 		'- [首页](' . home_url( '/' ) . ')',
 		'- [作品集市（全部工作台 / MCP / Skill）](' . home_url( '/skills/' ) . ')',
+		'- [云端 Agent 托管部署（Dot 云盒）](' . home_url( '/cloud/' ) . ')',
 		'- [1 对 1 定制与团队团购](' . home_url( '/custom/' ) . ')',
 		'- [常见问题与部署指南](' . home_url( '/faq/' ) . ')',
 		'- [更新日志](' . home_url( '/changelog/' ) . ')',
@@ -309,6 +310,7 @@ function sc_render_sitemap_xml() {
 	$urls = array(
 		home_url( '/' ),
 		home_url( '/skills/' ),
+		home_url( '/cloud/' ),
 		home_url( '/custom/' ),
 		home_url( '/faq/' ),
 		home_url( '/changelog/' ),

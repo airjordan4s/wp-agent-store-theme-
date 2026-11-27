@@ -118,6 +118,7 @@ function home_url( $p = '' ) {
 		'faq'       => './faq' . $en . '.html',
 		'changelog' => './changelog' . $en . '.html',
 		'custom'    => './custom' . $en . '.html',
+		'cloud'     => './cloud' . $en . '.html',
 		'terms'     => './terms' . $en . '.html',
 		'privacy'   => './privacy' . $en . '.html',
 		'refund'    => './refund' . $en . '.html',
@@ -227,6 +228,8 @@ export_page( 'changelog.html',    'zh', 'changelog', 'template-changelog.php' );
 export_page( 'changelog-en.html', 'en', 'changelog', 'template-changelog.php' );
 export_page( 'custom.html',       'zh', 'custom',    'template-custom.php' );
 export_page( 'custom-en.html',    'en', 'custom',    'template-custom.php' );
+export_page( 'cloud.html',        'zh', 'cloud',     'template-cloud.php' );
+export_page( 'cloud-en.html',     'en', 'cloud',     'template-cloud.php' );
 export_page( 'skills.html',       'zh', 'skills',    'archive-sc_skill.php' );
 export_page( 'skills-en.html',    'en', 'skills',    'archive-sc_skill.php' );
 export_page( 'product.html',      'zh', 'product',   'single-sc_skill.php' );

@@ -27,6 +27,7 @@
 		<div class="sc-footer__col">
 			<strong><?php echo esc_html( sc_t( '产品与服务', 'Products' ) ); ?></strong>
 			<a href="<?php echo esc_url( home_url( '/skills/' ) ); ?>"><?php echo esc_html( sc_t( '作品集市', 'Catalog' ) ); ?></a>
+			<a href="<?php echo esc_url( home_url( '/cloud/' ) ); ?>"><?php echo esc_html( sc_t( '云端 Agent 部署', 'Cloud Dot Box' ) ); ?></a>
 			<a href="<?php echo esc_url( home_url( '/custom/' ) ); ?>"><?php echo esc_html( sc_t( '定制与团购', 'Custom & Teams' ) ); ?></a>
 			<a href="<?php echo esc_url( sc_account_url() ); ?>"><?php echo esc_html( sc_t( '会员中心', 'Member Console' ) ); ?></a>
 		</div>

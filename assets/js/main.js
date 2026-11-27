@@ -710,6 +710,14 @@
 		});
 	}
 
+	/* 13.11 云端部署方案卡片一键预选下拉框 */
+	document.querySelectorAll('[data-pick-plan]').forEach(function (a) {
+		a.addEventListener('click', function () {
+			var sel = document.getElementById('sc-cl-plan');
+			if (sel) sel.value = a.getAttribute('data-pick-plan') || 'Dot Pro';
+		});
+	});
+
 	/* 14. 滚动显现 */
 	var reveals = document.querySelectorAll('[data-reveal]');
 	if ('IntersectionObserver' in window) {

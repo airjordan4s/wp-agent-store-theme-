@@ -48,6 +48,7 @@ function sc_inquiry_admin_column_values( $col, $post_id ) {
 		'custom' => '1 对 1 定制开发',
 		'team'   => '团队批量团购',
 		'both'   => '定制 + 团队授权',
+		'cloud'  => '云端 Dot 盒子部署',
 	);
 	$stat_map = array(
 		'new'       => '<span style="color:#d97706;font-weight:600">● 待跟进</span>',
@@ -162,6 +163,7 @@ function sc_submit_custom_inquiry( array $raw ) {
 		'custom' => sc_t( '1 对 1 私有工作台定制开发', '1-on-1 Custom Workbench' ),
 		'team'   => sc_t( '团队批量授权团购', 'Team Volume License' ),
 		'both'   => sc_t( '定制开发 + 团队授权', 'Custom + Team License' ),
+		'cloud'  => sc_t( '云端 Agent 盒子部署（Dot Box）', 'Cloud Agent Dot Box Hosting' ),
 	);
 	$type_txt = $type_labels[ $type ] ?? $type;
 

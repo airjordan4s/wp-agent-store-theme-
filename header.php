@@ -38,6 +38,7 @@
 			} else {
 				?>
 				<a class="sc-nav__link" href="<?php echo esc_url( home_url( '/skills/' ) ); ?>"><?php echo esc_html( sc_t( '作品集市', 'Catalog' ) ); ?></a>
+				<a class="sc-nav__link" href="<?php echo esc_url( home_url( '/cloud/' ) ); ?>"><?php echo esc_html( sc_t( '云端部署', 'Cloud Box' ) ); ?></a>
 				<a class="sc-nav__link" href="<?php echo esc_url( home_url( '/faq/' ) ); ?>"><?php echo esc_html( sc_t( '常见问题', 'FAQ' ) ); ?></a>
 				<a class="sc-nav__link" href="<?php echo esc_url( home_url( '/changelog/' ) ); ?>"><?php echo esc_html( sc_t( '更新日志', 'Changelog' ) ); ?></a>
 				<?php
@@ -118,6 +119,7 @@
 	} else {
 		?>
 		<a href="<?php echo esc_url( home_url( '/skills/' ) ); ?>"><?php echo esc_html( sc_t( '作品集市', 'Catalog' ) ); ?></a>
+		<a href="<?php echo esc_url( home_url( '/cloud/' ) ); ?>"><?php echo esc_html( sc_t( '云端部署', 'Cloud Box' ) ); ?></a>
 		<a href="<?php echo esc_url( home_url( '/faq/' ) ); ?>"><?php echo esc_html( sc_t( '常见问题', 'FAQ' ) ); ?></a>
 		<a href="<?php echo esc_url( home_url( '/changelog/' ) ); ?>"><?php echo esc_html( sc_t( '更新日志', 'Changelog' ) ); ?></a>
 		<?php

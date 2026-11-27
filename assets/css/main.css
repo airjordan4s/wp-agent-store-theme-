@@ -5536,3 +5536,47 @@ button { font-family: inherit; }
 	display: grid;
 	gap: 12px;
 }
+
+
+/* 云端 Agent 部署（Dot Cloud Box）专属页 */
+.sc-cloud-plans {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	border-bottom: 1px solid var(--sc-line);
+}
+
+.sc-cloud-plan {
+	padding: 40px 36px;
+	background: var(--sc-surface);
+	border-right: 1px solid var(--sc-line);
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.sc-cloud-plan:last-child { border-right: 0; }
+.sc-cloud-plan h2 { font-size: 24px; font-weight: 700; }
+.sc-cloud-plan .sc-btn { margin-top: auto; }
+
+.sc-cloud-plan--featured {
+	background: #111111;
+	color: #ffffff;
+}
+
+.sc-cloud-plan--featured h2 { color: #ffffff; }
+.sc-cloud-plan--featured .sc-cplan__price { border-bottom-color: rgba(255, 255, 255, 0.14); }
+.sc-cloud-plan--featured .sc-cplan__price span { color: rgba(255, 255, 255, 0.56); }
+
+.sc-cloud-feats {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	background: var(--sc-bg);
+	border-bottom: 1px solid var(--sc-line);
+}
+
+@media (max-width: 1020px) {
+	.sc-cloud-plans,
+	.sc-cloud-feats { grid-template-columns: 1fr; }
+	.sc-cloud-plan,
+	.sc-cloud-feats .sc-cstep { border-right: 0; border-bottom: 1px solid var(--sc-line); padding: 28px 20px; }
+}

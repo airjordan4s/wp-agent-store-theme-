@@ -16,6 +16,33 @@ function sc_langs() {
 	);
 }
 
+/** 零延迟地区与浏览器语言自动识别（优先 CDN 国家头，其次浏览器 Accept-Language） */
+function sc_detect_visitor_lang() {
+	// 1. 优先读取 Cloudflare / Vercel / Nginx GeoIP 国家代码（0ms 零外网请求）
+	$geo_headers = array( 'HTTP_CF_IPCOUNTRY', 'HTTP_X_VERCEL_IP_COUNTRY', 'HTTP_X_COUNTRY_CODE', 'GEOIP_COUNTRY_CODE' );
+	foreach ( $geo_headers as $hdr ) {
+		if ( ! empty( $_SERVER[ $hdr ] ) ) {
+			$cc = strtoupper( trim( sanitize_text_field( wp_unslash( $_SERVER[ $hdr ] ) ) ) );
+			if ( strlen( $cc ) === 2 && 'XX' !== $cc && 'T1' !== $cc ) {
+				return in_array( $cc, array( 'CN', 'HK', 'MO', 'TW', 'SG' ), true ) ? 'zh' : 'en';
+			}
+		}
+	}
+
+	// 2. 无 CDN 国家头时，回退读取浏览器 Accept-Language 首选语言
+	if ( ! empty( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) ) {
+		$al = strtolower( sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) ) );
+		if ( 0 === strpos( $al, 'zh' ) ) {
+			return 'zh';
+		}
+		if ( preg_match( '/^[a-z]{2}/', $al ) ) {
+			return 'en';
+		}
+	}
+
+	return 'zh';
+}
+
 function sc_current_lang() {
 	$langs = array_keys( sc_langs() );
 
@@ -42,7 +69,7 @@ function sc_current_lang() {
 		}
 	}
 
-	return 'zh';
+	return sc_detect_visitor_lang();
 }
 
 function sc_maybe_set_lang_cookie() {
