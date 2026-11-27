@@ -204,10 +204,55 @@ $faqs     = sc_faqs();
 <div class="sc-spacer"><div class="sc-framed"></div></div>
 <?php endif; ?>
 
-<!-- 2. macOS 风格极简交互演示窗口（支持切换不同业务工作台） -->
+<!-- 2. macOS 风格极简交互演示窗口（顶边带可摸头奔跑小狗 + 支持切换不同业务工作台） -->
 <?php if ( sc_section_enabled( 'demo' ) ) : ?>
 <section class="sc-band sc-demo" id="demo">
 	<div class="sc-framed sc-demo__wrap" data-reveal>
+		<!-- 窗顶小狗跑道：平时在顶边撒欢跑，鼠标移上去可停下来被摸狗头 -->
+		<div class="sc-roof-track" id="sc-roofTrack" aria-label="<?php echo esc_attr( sc_t( '窗顶奔跑小狗，鼠标移上去可以摸摸狗头', 'Roof puppy — hover to pet its head' ) ); ?>">
+			<div class="sc-roof-dog" id="sc-roofDog" role="button" tabindex="0" title="<?php echo esc_attr( sc_t( '摸摸狗头 ♥', 'Pet the puppy ♥' ) ); ?>">
+				<span class="sc-roof-dog__bubble" id="sc-roofBubble" aria-hidden="true"></span>
+				<div class="sc-roof-dog__hearts" id="sc-roofHearts" aria-hidden="true"></div>
+				<svg class="sc-roof-dog__svg" viewBox="0 0 84 62" width="68" height="50" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<!-- 尾巴（摇啊摇） -->
+					<path class="sc-rd-tail" d="M18 36C10 31 8 22 14 19" stroke="#111111" stroke-width="3.2" stroke-linecap="round"/>
+					<!-- 后腿 -->
+					<path class="sc-rd-leg-b1" d="M25 46L21 57" stroke="#111111" stroke-width="3.4" stroke-linecap="round"/>
+					<path class="sc-rd-leg-b2" d="M32 46L35 57" stroke="#111111" stroke-width="3.4" stroke-linecap="round"/>
+					<!-- 身体 -->
+					<rect x="18" y="30" width="36" height="20" rx="10" fill="#ffffff" stroke="#111111" stroke-width="2.6"/>
+					<!-- 前腿 -->
+					<path class="sc-rd-leg-f1" d="M45 46L42 57" stroke="#111111" stroke-width="3.4" stroke-linecap="round"/>
+					<path class="sc-rd-leg-f2" d="M52 46L56 57" stroke="#111111" stroke-width="3.4" stroke-linecap="round"/>
+					<!-- 狗头（带耷拉耳朵） -->
+					<g class="sc-rd-head">
+						<!-- 后耳 -->
+						<path class="sc-rd-ear" d="M46 16C41 18 39 26 42 31C44 33 48 31 49 27" fill="#ffffff" stroke="#111111" stroke-width="2.4" stroke-linejoin="round"/>
+						<!-- 圆圆狗头 -->
+						<rect x="44" y="10" width="30" height="25" rx="12" fill="#ffffff" stroke="#111111" stroke-width="2.6"/>
+						<!-- 前耷拉耳 -->
+						<path class="sc-rd-ear" d="M52 17C48 21 47 29 51 32C54 33 57 30 57 25" fill="#ffffff" stroke="#111111" stroke-width="2.4" stroke-linejoin="round"/>
+						<!-- 腮红 -->
+						<ellipse class="sc-rd-blush" cx="56" cy="27" rx="3" ry="1.8" fill="#fda4af" opacity="0.75"/>
+						<ellipse class="sc-rd-blush" cx="70" cy="27" rx="2.6" ry="1.6" fill="#fda4af" opacity="0.75"/>
+						<!-- 正常圆眼睛 -->
+						<g class="sc-rd-eyes-normal">
+							<circle cx="59" cy="22" r="2.1" fill="#111111"/>
+							<circle cx="68" cy="22" r="2.1" fill="#111111"/>
+						</g>
+						<!-- 被摸头时眯成弯弯笑眼 ^ ^ -->
+						<g class="sc-rd-eyes-happy">
+							<path d="M56.5 23C57.8 20.5 60.2 20.5 61.5 23" stroke="#111111" stroke-width="2.2" stroke-linecap="round"/>
+							<path d="M65.5 23C66.8 20.5 69.2 20.5 70.5 23" stroke="#111111" stroke-width="2.2" stroke-linecap="round"/>
+						</g>
+						<!-- 小鼻子与微笑嘴 -->
+						<ellipse cx="64" cy="25.2" rx="1.8" ry="1.3" fill="#111111"/>
+						<path d="M61.5 27.6C62.4 29 63.6 29 64 27.8C64.4 29 65.6 29 66.5 27.6" stroke="#111111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+					</g>
+				</svg>
+			</div>
+		</div>
+
 		<div class="sc-window">
 			<div class="sc-window__chrome sc-window__chrome--tabs">
 				<div class="sc-window__dots" aria-hidden="true">

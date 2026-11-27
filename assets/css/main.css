@@ -5626,3 +5626,132 @@ button { font-family: inherit; }
 	object-fit: contain;
 	flex-shrink: 0;
 }
+
+
+/* 演示窗顶边奔跑小狗（鼠标移上去可摸摸狗头） */
+.sc-roof-track {
+	position: relative;
+	width: 100%;
+	height: 50px;
+	margin-bottom: -4px;
+	z-index: 4;
+	pointer-events: none;
+}
+
+.sc-roof-dog {
+	position: absolute;
+	bottom: 0;
+	left: 24px;
+	width: 68px;
+	height: 50px;
+	pointer-events: auto;
+	cursor: grab;
+	user-select: none;
+	will-change: transform;
+	transform-origin: center bottom;
+}
+
+.sc-roof-dog:active { cursor: grabbing; }
+
+.sc-roof-dog__svg {
+	display: block;
+	overflow: visible;
+	transform-origin: center bottom;
+	transition: transform 180ms var(--sc-ease);
+}
+
+.sc-roof-dog.is-left .sc-roof-dog__svg {
+	transform: scaleX(-1);
+}
+
+/* 奔跑动画 */
+.sc-roof-dog.is-running .sc-roof-dog__svg {
+	animation: sc-rd-bounce 0.36s ease-in-out infinite alternate;
+}
+.sc-roof-dog.is-running.is-left .sc-roof-dog__svg {
+	animation: sc-rd-bounce-l 0.36s ease-in-out infinite alternate;
+}
+
+.sc-rd-tail { transform-origin: 18px 36px; animation: sc-rd-tail 0.45s ease-in-out infinite alternate; }
+.sc-rd-leg-f1, .sc-rd-leg-b2 { transform-origin: 45px 46px; }
+.sc-rd-leg-f2, .sc-rd-leg-b1 { transform-origin: 32px 46px; }
+
+.sc-roof-dog.is-running .sc-rd-leg-f1 { animation: sc-rd-stride-a 0.34s ease-in-out infinite alternate; }
+.sc-roof-dog.is-running .sc-rd-leg-b2 { transform-origin: 32px 46px; animation: sc-rd-stride-a 0.34s ease-in-out infinite alternate; }
+.sc-roof-dog.is-running .sc-rd-leg-f2 { transform-origin: 52px 46px; animation: sc-rd-stride-b 0.34s ease-in-out infinite alternate; }
+.sc-roof-dog.is-running .sc-rd-leg-b1 { transform-origin: 25px 46px; animation: sc-rd-stride-b 0.34s ease-in-out infinite alternate; }
+
+.sc-rd-eyes-happy { display: none; }
+
+/* 摸狗头状态：停下眯笑眼、压扁撒娇、尾巴狂摇 */
+.sc-roof-dog.is-petted .sc-rd-eyes-normal { display: none; }
+.sc-roof-dog.is-petted .sc-rd-eyes-happy { display: block; }
+.sc-roof-dog.is-petted .sc-rd-tail { animation-duration: 0.14s; }
+.sc-roof-dog.is-petted .sc-rd-blush { opacity: 1; }
+.sc-roof-dog.is-petted .sc-roof-dog__svg {
+	transform: scaleX(1.06) scaleY(0.92);
+}
+.sc-roof-dog.is-petted.is-left .sc-roof-dog__svg {
+	transform: scaleX(-1.06) scaleY(0.92);
+}
+
+.sc-roof-dog__bubble {
+	position: absolute;
+	left: 50%;
+	bottom: 54px;
+	transform: translateX(-50%) translateY(4px);
+	padding: 3px 9px;
+	border-radius: 999px;
+	background: #111111;
+	color: #ffffff;
+	font-size: 11px;
+	font-weight: 500;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 180ms, transform 180ms;
+}
+
+.sc-roof-dog.is-petted .sc-roof-dog__bubble.is-show {
+	opacity: 1;
+	transform: translateX(-50%) translateY(0);
+}
+
+.sc-roof-dog__hearts {
+	position: absolute;
+	inset: -16px 0 auto;
+	height: 24px;
+	pointer-events: none;
+}
+
+.sc-rd-heart {
+	position: absolute;
+	font-size: 13px;
+	color: #ef4444;
+	animation: sc-rd-heart-up 0.9s ease-out forwards;
+}
+
+@keyframes sc-rd-bounce {
+	from { transform: translateY(0); }
+	to   { transform: translateY(-4px); }
+}
+@keyframes sc-rd-bounce-l {
+	from { transform: scaleX(-1) translateY(0); }
+	to   { transform: scaleX(-1) translateY(-4px); }
+}
+@keyframes sc-rd-tail {
+	from { transform: rotate(-14deg); }
+	to   { transform: rotate(22deg); }
+}
+@keyframes sc-rd-stride-a {
+	from { transform: rotate(-20deg); }
+	to   { transform: rotate(22deg); }
+}
+@keyframes sc-rd-stride-b {
+	from { transform: rotate(22deg); }
+	to   { transform: rotate(-20deg); }
+}
+@keyframes sc-rd-heart-up {
+	0%   { opacity: 1; transform: translateY(4px) scale(0.7); }
+	100% { opacity: 0; transform: translateY(-24px) scale(1.15); }
+}

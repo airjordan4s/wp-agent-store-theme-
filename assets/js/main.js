@@ -718,6 +718,85 @@
 		});
 	});
 
+	/* 13.12 演示窗顶边奔跑小狗（鼠标移上去可停下摸摸狗头冒爱心） */
+	var roofTrack = document.getElementById('sc-roofTrack');
+	var roofDog = document.getElementById('sc-roofDog');
+	var roofHearts = document.getElementById('sc-roofHearts');
+	var roofBubble = document.getElementById('sc-roofBubble');
+	if (roofTrack && roofDog) {
+		var dogX = 36;
+		var dogDir = 1;
+		var dogSpeed = 1.15;
+		var isPetted = false;
+		var lastHeart = 0;
+		var isEnDog = window.SkillCraft && window.SkillCraft.lang === 'en';
+		var petLines = isEnDog ? ['Woof~ ♥', 'So comfy~', 'Pet more! ♥'] : ['汪~ 好舒服 ♥', '再摸摸头~', '贴贴 ♥'];
+		var petIdx = 0;
+
+		roofDog.classList.add('is-running');
+
+		var spawnHeart = function () {
+			if (!roofHearts) return;
+			var now = Date.now();
+			if (now - lastHeart < 220) return;
+			lastHeart = now;
+			var h = document.createElement('span');
+			h.className = 'sc-rd-heart';
+			h.textContent = Math.random() > 0.3 ? '♥' : '✦';
+			h.style.left = (24 + Math.random() * 28) + 'px';
+			roofHearts.appendChild(h);
+			setTimeout(function () { h.remove(); }, 920);
+		};
+
+		var startPet = function () {
+			isPetted = true;
+			roofDog.classList.remove('is-running');
+			roofDog.classList.add('is-petted');
+			if (roofBubble) {
+				roofBubble.textContent = petLines[petIdx % petLines.length];
+				petIdx++;
+				roofBubble.classList.add('is-show');
+			}
+			spawnHeart();
+		};
+
+		var stopPet = function () {
+			isPetted = false;
+			roofDog.classList.remove('is-petted');
+			roofDog.classList.add('is-running');
+			if (roofBubble) roofBubble.classList.remove('is-show');
+		};
+
+		roofDog.addEventListener('mouseenter', startPet);
+		roofDog.addEventListener('mousemove', function () {
+			if (isPetted) spawnHeart();
+		});
+		roofDog.addEventListener('click', function () {
+			startPet();
+			spawnHeart();
+		});
+		roofDog.addEventListener('mouseleave', stopPet);
+
+		var tickDog = function () {
+			if (!isPetted) {
+				var maxX = Math.max(40, roofTrack.clientWidth - 96);
+				dogX += dogDir * dogSpeed;
+				if (dogX >= maxX) {
+					dogX = maxX;
+					dogDir = -1;
+					roofDog.classList.add('is-left');
+				} else if (dogX <= 20) {
+					dogX = 20;
+					dogDir = 1;
+					roofDog.classList.remove('is-left');
+				}
+				roofDog.style.left = dogX + 'px';
+			}
+			requestAnimationFrame(tickDog);
+		};
+		requestAnimationFrame(tickDog);
+	}
+
 	/* 14. 滚动显现 */
 	var reveals = document.querySelectorAll('[data-reveal]');
 	if ('IntersectionObserver' in window) {
