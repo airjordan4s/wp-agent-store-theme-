@@ -101,7 +101,15 @@ $pd_heat  = $post_id ? ( (int) get_post_meta( $post_id, '_sc_heat', true ) ?: 99
 					<span><?php echo esc_html( $preview_img ? sc_t( '实机截图', 'Live Screenshot' ) : sc_t( '交互预览 · 可在 WP 后台上传实机截图替换', 'Preview · Upload real screenshot in WP Admin' ) ); ?></span>
 				</div>
 
-				<?php if ( $preview_img ) : ?>
+				<?php
+				$gallery_raw  = $post_id ? (string) get_post_meta( $post_id, '_sc_gallery_imgs', true ) : '';
+				$gallery_urls = array_values( array_filter( array_map( 'trim', explode( "\n", $gallery_raw ) ) ) );
+				if ( $preview_img ) {
+					array_unshift( $gallery_urls, $preview_img );
+					$gallery_urls = array_values( array_unique( $gallery_urls ) );
+				}
+				if ( ! empty( $gallery_urls ) ) :
+					?>
 					<div class="sc-pd-shotframe">
 						<div class="sc-wb-topbar sc-wb-topbar--slim">
 							<div class="sc-window__dots" aria-hidden="true">
@@ -110,9 +118,19 @@ $pd_heat  = $post_id ? ( (int) get_post_meta( $post_id, '_sc_heat', true ) ?: 99
 								<span style="background:#28c840"></span>
 							</div>
 							<em class="sc-pd-shotframe__title"><?php echo esc_html( $title ); ?></em>
+							<button type="button" class="sc-pd-zoombtn" id="sc-zoomMainShot" aria-label="<?php echo esc_attr( sc_t( '放大预览', 'Zoom screenshot' ) ); ?>"><?php echo esc_html( sc_t( '点击放大 ⤢', 'Zoom ⤢' ) ); ?></button>
 						</div>
-						<img src="<?php echo esc_url( $preview_img ); ?>" alt="<?php echo esc_attr( $title ); ?>">
+						<img id="sc-mainShotImg" src="<?php echo esc_url( $gallery_urls[0] ); ?>" alt="<?php echo esc_attr( $title ); ?>" data-lightbox-trigger decoding="async">
 					</div>
+					<?php if ( count( $gallery_urls ) > 1 ) : ?>
+						<div class="sc-pd-thumbs" role="group" aria-label="<?php echo esc_attr( sc_t( '切换工作台截图', 'Switch screenshots' ) ); ?>">
+							<?php foreach ( $gallery_urls as $g_i => $g_url ) : ?>
+								<button type="button" class="sc-pd-thumb <?php echo 0 === $g_i ? 'is-active' : ''; ?>" data-shot-src="<?php echo esc_url( $g_url ); ?>">
+									<img src="<?php echo esc_url( $g_url ); ?>" alt="" loading="lazy" decoding="async">
+								</button>
+							<?php endforeach; ?>
+						</div>
+					<?php endif; ?>
 				<?php else : ?>
 					<div class="sc-pd-shotframe sc-pd-shotframe--mock">
 						<div class="sc-wb-topbar sc-wb-topbar--slim">
@@ -339,6 +357,12 @@ $pd_heat  = $post_id ? ( (int) get_post_meta( $post_id, '_sc_heat', true ) ?: 99
 			</button>
 		</div>
 	</div>
+</div>
+
+<!-- 全屏图片灯箱 -->
+<div class="sc-lightbox" id="sc-lightbox" hidden role="dialog" aria-modal="true" aria-label="<?php echo esc_attr( sc_t( '全屏截图预览', 'Fullscreen preview' ) ); ?>">
+	<button type="button" class="sc-lightbox__close" id="sc-lightboxClose" aria-label="<?php echo esc_attr( sc_t( '关闭', 'Close' ) ); ?>">×</button>
+	<img id="sc-lightboxImg" src="" alt="">
 </div>
 
 <?php

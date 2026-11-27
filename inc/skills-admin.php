@@ -63,6 +63,7 @@ function sc_skill_render_meta_box( $post ) {
 	$title_en    = get_post_meta( $post->ID, '_sc_title_en', true );
 	$tags        = get_post_meta( $post->ID, '_sc_tags', true );
 	$preview_img = get_post_meta( $post->ID, '_sc_preview_img', true );
+	$gallery_raw = get_post_meta( $post->ID, '_sc_gallery_imgs', true );
 	$subtitle    = get_post_meta( $post->ID, '_sc_subtitle', true );
 	$highlights  = get_post_meta( $post->ID, '_sc_highlights', true );
 	$install_cmd = get_post_meta( $post->ID, '_sc_install_cmd', true );
@@ -151,6 +152,12 @@ function sc_skill_render_meta_box( $post ) {
 	</div>
 
 	<div class="sc-mb-field">
+		<label for="sc_gallery_imgs">更多工作台模块截图（选填，每行一张图片 URL，前台详情页支持缩略图切换 + 点击全屏灯箱）</label>
+		<textarea id="sc_gallery_imgs" name="sc_gallery_imgs" rows="3" placeholder="https://.../panel-sites.png&#10;https://.../panel-kb.png"><?php echo esc_textarea( $gallery_raw ); ?></textarea>
+		<div><button type="button" class="button" id="sc-add-gallery">从媒体库追加截图</button></div>
+	</div>
+
+	<div class="sc-mb-field">
 		<label for="sc_subtitle">一句话卖点简介（用于首页、集市卡片与详情页副标题）</label>
 		<textarea id="sc_subtitle" name="sc_subtitle" rows="2" placeholder="集中掌管多台服务器、网站、面板与日志，让基础设施井然有序，把繁琐运维交给 Agent。"><?php echo esc_textarea( $subtitle ); ?></textarea>
 	</div>
@@ -208,6 +215,19 @@ function sc_skill_render_meta_box( $post ) {
 			$('#sc_preview_img').val('');
 			$('#sc-preview-thumb').hide().attr('src', '');
 		});
+		var gFrame;
+		$('#sc-add-gallery').on('click', function(e){
+			e.preventDefault();
+			if (gFrame) { gFrame.open(); return; }
+			gFrame = wp.media({ title: '追加工作台截图', button: { text: '追加到画廊' }, multiple: true });
+			gFrame.on('select', function(){
+				var urls = [];
+				gFrame.state().get('selection').each(function(m){ urls.push(m.toJSON().url); });
+				var cur = $.trim($('#sc_gallery_imgs').val());
+				$('#sc_gallery_imgs').val((cur ? cur + "\n" : '') + urls.join("\n"));
+			});
+			gFrame.open();
+		});
 	});
 	</script>
 	<?php
@@ -264,6 +284,7 @@ function sc_skill_save_meta( $post_id ) {
 		'sc_subtitle'          => '_sc_subtitle',
 		'sc_highlights'        => '_sc_highlights',
 		'sc_protected_payload' => '_sc_protected_payload',
+		'sc_gallery_imgs'      => '_sc_gallery_imgs',
 	);
 	foreach ( $area_fields as $post_key => $meta_key ) {
 		if ( isset( $_POST[ $post_key ] ) ) {

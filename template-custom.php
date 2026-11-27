@@ -26,10 +26,12 @@ if ( 'POST' === ( $_SERVER['REQUEST_METHOD'] ?? '' ) && ! empty( $_POST['sc_cust
 		} else {
 			$admin_email = get_option( 'admin_email' );
 			if ( $admin_email && function_exists( 'wp_mail' ) ) {
+				$site = function_exists( 'sc_site_name' ) ? sc_site_name() : get_bloginfo( 'name' );
 				wp_mail(
 					$admin_email,
-					'[SkillCraft 定制/团购咨询] ' . $name,
-					"类型：{$type}\n称呼：{$name}\n邮箱：{$email}\n规模/预算：{$seats}\n\n需求描述：\n{$brief}"
+					'[' . $site . ' 定制/团购咨询] ' . $name,
+					"类型：{$type}\n称呼：{$name}\n邮箱：{$email}\n规模/预算：{$seats}\n\n需求描述：\n{$brief}",
+					array( 'Reply-To: ' . $name . ' <' . $email . '>' )
 				);
 			}
 			$submitted = true;
@@ -42,7 +44,7 @@ if ( 'POST' === ( $_SERVER['REQUEST_METHOD'] ?? '' ) && ! empty( $_POST['sc_cust
 	<!-- 页头 -->
 	<div class="sc-framed sc-subhero">
 		<span class="sc-kicker">/ <?php echo esc_html( sc_t( '私有定制与团队团购', 'CUSTOM & TEAM LICENSING' ) ); ?></span>
-		<h1><?php echo esc_html( sc_t( '为你的团队定制专属 Skill 能力', 'Bespoke Skills & team licensing' ) ); ?></h1>
+		<h1><?php echo esc_html( sc_t( '为你的团队定制专属 AI 工作台与插件', 'Bespoke AI Workbenches & Team Licensing' ) ); ?></h1>
 		<p><?php echo esc_html( sc_t( '无论是 5 人以上团队批量采购自营作品，还是把你们内部的工程规范与业务 SOP 封装为私有 Skill，我们都提供端到端交付。', 'Volume team licenses for our catalog or 1-on-1 engineering to package your internal SOPs into private Skills.' ) ); ?></p>
 	</div>
 

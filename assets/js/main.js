@@ -612,6 +612,35 @@
 		});
 	});
 
+	/* 13.8 商品详情页多图画廊切换 + 全屏灯箱 */
+	var mainShot = document.getElementById('sc-mainShotImg');
+	var lb = document.getElementById('sc-lightbox');
+	var lbImg = document.getElementById('sc-lightboxImg');
+	var lbClose = document.getElementById('sc-lightboxClose');
+	if (mainShot) {
+		document.querySelectorAll('[data-shot-src]').forEach(function (t) {
+			t.addEventListener('click', function () {
+				var src = t.getAttribute('data-shot-src');
+				if (!src) return;
+				mainShot.src = src;
+				document.querySelectorAll('[data-shot-src]').forEach(function (b) { b.classList.toggle('is-active', b === t); });
+			});
+		});
+		var openLb = function () {
+			if (!lb || !lbImg) return;
+			lbImg.src = mainShot.src;
+			lb.hidden = false;
+		};
+		mainShot.addEventListener('click', openLb);
+		var zoomBtn = document.getElementById('sc-zoomMainShot');
+		if (zoomBtn) zoomBtn.addEventListener('click', openLb);
+		if (lbClose) lbClose.addEventListener('click', function () { lb.hidden = true; });
+		if (lb) {
+			lb.addEventListener('click', function (e) { if (e.target === lb) lb.hidden = true; });
+			document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) lb.hidden = true; });
+		}
+	}
+
 	/* 14. 滚动显现 */
 	var reveals = document.querySelectorAll('[data-reveal]');
 	if ('IntersectionObserver' in window) {

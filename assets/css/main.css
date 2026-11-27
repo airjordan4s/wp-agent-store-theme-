@@ -5389,3 +5389,78 @@ button { font-family: inherit; }
 	.sc-post-nav { grid-template-columns: 1fr; }
 	.sc-post-nav__card--next { text-align: left; }
 }
+
+
+/* 详情页多图缩略切换 + 全屏灯箱 */
+.sc-pd-zoombtn {
+	margin-left: auto;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	background: rgba(255, 255, 255, 0.08);
+	color: #f3f4f6;
+	font-size: 11px;
+	padding: 3px 9px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.sc-pd-zoombtn:hover { background: rgba(255, 255, 255, 0.16); }
+#sc-mainShotImg { cursor: zoom-in; }
+
+.sc-pd-thumbs {
+	display: flex;
+	gap: 10px;
+	margin-top: 12px;
+	overflow-x: auto;
+}
+
+.sc-pd-thumb {
+	width: 112px;
+	aspect-ratio: 16 / 10;
+	padding: 0;
+	border: 2px solid transparent;
+	border-radius: 7px;
+	overflow: hidden;
+	background: #111214;
+	cursor: pointer;
+	flex-shrink: 0;
+	opacity: 0.65;
+	transition: opacity 150ms, border-color 150ms;
+}
+
+.sc-pd-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sc-pd-thumb:hover, .sc-pd-thumb.is-active { opacity: 1; border-color: var(--sc-ink); }
+
+.sc-lightbox {
+	position: fixed;
+	inset: 0;
+	z-index: 300;
+	background: rgba(10, 10, 12, 0.88);
+	backdrop-filter: blur(6px);
+	display: grid;
+	place-items: center;
+	padding: 28px;
+}
+
+.sc-lightbox[hidden] { display: none; }
+
+.sc-lightbox img {
+	max-width: min(1280px, 94vw);
+	max-height: 88vh;
+	border-radius: 10px;
+	box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+}
+
+.sc-lightbox__close {
+	position: fixed;
+	top: 18px;
+	right: 22px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	background: rgba(255, 255, 255, 0.1);
+	color: #ffffff;
+	font-size: 24px;
+	line-height: 1;
+	cursor: pointer;
+}

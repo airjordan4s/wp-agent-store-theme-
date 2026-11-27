@@ -46,25 +46,30 @@ function skillcraft_setup() {
 add_action( 'after_setup_theme', 'skillcraft_setup' );
 
 function skillcraft_assets() {
+	$css_ver = file_exists( SKILLCRAFT_DIR . '/assets/css/main.css' ) ? (string) filemtime( SKILLCRAFT_DIR . '/assets/css/main.css' ) : SKILLCRAFT_VERSION;
+	$js_ver  = file_exists( SKILLCRAFT_DIR . '/assets/js/main.js' ) ? (string) filemtime( SKILLCRAFT_DIR . '/assets/js/main.js' ) : SKILLCRAFT_VERSION;
+
+	// 非阻塞加载可选字体（国内访问即使 Google Fonts 超时也零阻塞首屏渲染）
 	wp_enqueue_style(
 		'skillcraft-fonts',
-		'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap',
+		'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap',
 		array(),
-		null
+		null,
+		'print'
 	);
 
 	wp_enqueue_style(
 		'skillcraft-main',
 		SKILLCRAFT_URI . '/assets/css/main.css',
-		array( 'skillcraft-fonts' ),
-		SKILLCRAFT_VERSION
+		array(),
+		$css_ver
 	);
 
 	wp_enqueue_script(
 		'skillcraft-main',
 		SKILLCRAFT_URI . '/assets/js/main.js',
 		array(),
-		SKILLCRAFT_VERSION,
+		$js_ver,
 		true
 	);
 
@@ -76,6 +81,39 @@ function skillcraft_assets() {
 	) );
 }
 add_action( 'wp_enqueue_scripts', 'skillcraft_assets' );
+
+/** 性能优化：字体异步生效、JS 自动 defer、移除 WP 冗余 Emoji 与头信息 */
+function skillcraft_style_async( $html, $handle ) {
+	if ( 'skillcraft-fonts' === $handle ) {
+		return str_replace( "media='print'", "media='print' onload=\"this.media='all'\"", $html );
+	}
+	return $html;
+}
+add_filter( 'style_loader_tag', 'skillcraft_style_async', 10, 2 );
+
+function skillcraft_script_defer( $tag, $handle ) {
+	if ( 'skillcraft-main' === $handle && false === strpos( $tag, 'defer' ) ) {
+		return str_replace( ' src=', ' defer src=', $tag );
+	}
+	return $tag;
+}
+add_filter( 'script_loader_tag', 'skillcraft_script_defer', 10, 2 );
+
+function skillcraft_perf_cleanup() {
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'wp_head', 'rsd_link' );
+	remove_action( 'wp_head', 'wlwmanifest_link' );
+	remove_action( 'wp_head', 'wp_generator' );
+	remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+}
+add_action( 'init', 'skillcraft_perf_cleanup' );
+
+function skillcraft_resource_hints() {
+	echo '<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>' . "\n";
+	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+}
+add_action( 'wp_head', 'skillcraft_resource_hints', 1 );
 
 /** 注册自定义文章类型：Skill 商品（后台可直接发布） */
 function skillcraft_register_post_types() {
