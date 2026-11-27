@@ -120,6 +120,10 @@ $sync_cmd    = 'npx @skillcraft/cli sync --account ' . $user->user_login;
 						<span><?php echo esc_html( sc_t( '管理订单与授权', 'Manage Orders' ) ); ?></span>
 						<em class="sc-account__ext">→</em>
 					</a>
+					<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=sc_inquiry' ) ); ?>">
+						<span><?php echo esc_html( sc_t( '查看咨询线索', 'View Inquiries' ) ); ?></span>
+						<em class="sc-account__ext">→</em>
+					</a>
 					<a href="<?php echo esc_url( admin_url( 'admin.php?page=skillcraft-content' ) ); ?>">
 						<span><?php echo esc_html( sc_t( '站点内容管理', 'Site Content' ) ); ?></span>
 						<em class="sc-account__ext">→</em>

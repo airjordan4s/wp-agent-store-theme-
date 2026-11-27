@@ -14,27 +14,12 @@ $error_msg = '';
 
 if ( 'POST' === ( $_SERVER['REQUEST_METHOD'] ?? '' ) && ! empty( $_POST['sc_custom_submit'] ) ) {
 	$nonce = isset( $_POST['sc_custom_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['sc_custom_nonce'] ) ) : '';
-	if ( wp_verify_nonce( $nonce, 'sc_custom_inquiry' ) ) {
-		$name  = trim( sanitize_text_field( wp_unslash( $_POST['c_name'] ?? '' ) ) );
-		$email = trim( sanitize_email( wp_unslash( $_POST['c_email'] ?? '' ) ) );
-		$type  = sanitize_text_field( wp_unslash( $_POST['c_type'] ?? 'custom' ) );
-		$seats = sanitize_text_field( wp_unslash( $_POST['c_seats'] ?? '' ) );
-		$brief = trim( sanitize_textarea_field( wp_unslash( $_POST['c_brief'] ?? '' ) ) );
-
-		if ( '' === $name || ! is_email( $email ) || '' === $brief ) {
-			$error_msg = sc_t( '请填写你的称呼、有效邮箱和需求说明。', 'Please provide your name, a valid email, and project details.' );
-		} else {
-			$admin_email = get_option( 'admin_email' );
-			if ( $admin_email && function_exists( 'wp_mail' ) ) {
-				$site = function_exists( 'sc_site_name' ) ? sc_site_name() : get_bloginfo( 'name' );
-				wp_mail(
-					$admin_email,
-					'[' . $site . ' 定制/团购咨询] ' . $name,
-					"类型：{$type}\n称呼：{$name}\n邮箱：{$email}\n规模/预算：{$seats}\n\n需求描述：\n{$brief}",
-					array( 'Reply-To: ' . $name . ' <' . $email . '>' )
-				);
-			}
+	if ( wp_verify_nonce( $nonce, 'sc_custom_inquiry' ) && function_exists( 'sc_submit_custom_inquiry' ) ) {
+		$res = sc_submit_custom_inquiry( $_POST );
+		if ( ! empty( $res['ok'] ) ) {
 			$submitted = true;
+		} else {
+			$error_msg = $res['error'] ?? '';
 		}
 	}
 }
@@ -133,6 +118,10 @@ if ( 'POST' === ( $_SERVER['REQUEST_METHOD'] ?? '' ) && ! empty( $_POST['sc_cust
 			<form class="sc-form" method="post" action="">
 				<?php wp_nonce_field( 'sc_custom_inquiry', 'sc_custom_nonce' ); ?>
 				<input type="hidden" name="sc_custom_submit" value="1">
+				<div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+					<label for="sc-c-web">Website</label>
+					<input id="sc-c-web" name="c_website" type="text" tabindex="-1" autocomplete="off">
+				</div>
 
 				<div class="sc-form__row2">
 					<div class="sc-field">

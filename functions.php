@@ -21,6 +21,7 @@ require_once SKILLCRAFT_DIR . '/inc/skills-admin.php';
 require_once SKILLCRAFT_DIR . '/inc/orders.php';
 require_once SKILLCRAFT_DIR . '/inc/license-api.php';
 require_once SKILLCRAFT_DIR . '/inc/changelog-cpt.php';
+require_once SKILLCRAFT_DIR . '/inc/inquiries.php';
 require_once SKILLCRAFT_DIR . '/inc/seo.php';
 
 function skillcraft_setup() {
