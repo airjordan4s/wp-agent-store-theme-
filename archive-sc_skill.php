@@ -19,14 +19,30 @@ $types    = function_exists( 'sc_product_types' ) ? sc_product_types() : array(
 if ( ! function_exists( 'sc_market_icon' ) ) {
 	function sc_market_icon( $name ) {
 		$icons = array(
-			'desktop' => '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
-			'plug'    => '<path d="M12 22v-5M9 8V2M15 8V2M6 8h12v3a6 6 0 0 1-12 0V8z"/>',
-			'spark'   => '<path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2L12 3z"/>',
+			'server' => '<rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><circle cx="7" cy="7" r="1"/><circle cx="7" cy="17" r="1"/>',
+			'bag'    => '<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/>',
+			'layers' => '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+			'phone'  => '<rect x="6" y="2" width="12" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>',
+			'db'     => '<ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/>',
+			'globe'  => '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9s1.3-6.3 3.8-9z"/>',
+			'shield' => '<path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z"/><path d="M9.5 12l2 2 3.5-4"/>',
+			'doc'    => '<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h4"/>',
 		);
-		$path = $icons[ $name ] ?? $icons['desktop'];
-		return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $path . '</svg>';
+		$path = $icons[ $name ] ?? $icons['server'];
+		return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $path . '</svg>';
 	}
 }
+
+$card_visuals = array(
+	array( 'icon' => 'server', 'tint' => '#eef5ff', 'color' => '#1677ff' ),
+	array( 'icon' => 'bag',    'tint' => '#ecfdf5', 'color' => '#059669' ),
+	array( 'icon' => 'layers', 'tint' => '#f5f3ff', 'color' => '#7c3aed' ),
+	array( 'icon' => 'phone',  'tint' => '#ecfeff', 'color' => '#0891b2' ),
+	array( 'icon' => 'db',     'tint' => '#eff6ff', 'color' => '#2563eb' ),
+	array( 'icon' => 'globe',  'tint' => '#fffbeb', 'color' => '#d97706' ),
+	array( 'icon' => 'shield', 'tint' => '#fef2f2', 'color' => '#dc2626' ),
+	array( 'icon' => 'doc',    'tint' => '#fdf2f8', 'color' => '#db2777' ),
+);
 ?>
 
 <section class="sc-band sc-subpage sc-market-page">
@@ -143,6 +159,7 @@ if ( ! function_exists( 'sc_market_icon' ) ) {
 			$heat    = ! empty( $p['heat'] ) ? (int) $p['heat'] : 92;
 			$p_img   = ! empty( $p['preview_img'] ) ? $p['preview_img'] : '';
 			$num     = str_pad( (string) ( $idx + 1 ), 2, '0', STR_PAD_LEFT );
+			$vis     = $card_visuals[ $idx % count( $card_visuals ) ];
 			?>
 			<a class="sc-product-card sc-mk-card"
 			   href="<?php echo esc_url( $p['url'] ); ?>"
@@ -157,8 +174,8 @@ if ( ! function_exists( 'sc_market_icon' ) ) {
 				<?php endif; ?>
 
 				<div class="sc-mk-card__top">
-					<span class="sc-mk-icon" style="background:<?php echo esc_attr( $t_info['tint'] ); ?>;color:<?php echo esc_attr( $t_info['color'] ); ?>">
-						<?php echo sc_market_icon( $t_info['icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<span class="sc-mk-icon" style="background:<?php echo esc_attr( $vis['tint'] ); ?>;color:<?php echo esc_attr( $vis['color'] ); ?>">
+						<?php echo sc_market_icon( $vis['icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</span>
 					<span class="sc-badge<?php echo 'monthly' === $billing ? ' sc-badge--monthly' : ''; ?>"><?php echo esc_html( sc_t( $p['badge'], $p['badge_en'] ) ); ?></span>
 				</div>

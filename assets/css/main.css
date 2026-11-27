@@ -5601,15 +5601,20 @@ button { font-family: inherit; }
 /* 作品集市「镇店精选」Spotlight 暗黑流光背景图增强 */
 .sc-mk-spotlight {
 	background:
-		linear-gradient(96deg, rgba(11, 12, 16, 0.88) 0%, rgba(11, 12, 16, 0.62) 52%, rgba(11, 12, 16, 0.35) 100%),
+		linear-gradient(96deg, rgba(10, 12, 18, 0.78) 0%, rgba(10, 12, 18, 0.36) 54%, rgba(10, 12, 18, 0.14) 100%),
 		var(--sc-spot-bg) center / cover no-repeat,
 		#111111;
 }
 
 .sc-mk-spotlight .sc-mk-term {
-	background: rgba(18, 19, 24, 0.78);
-	backdrop-filter: blur(12px);
-	border-color: rgba(255, 255, 255, 0.16);
+	background: rgba(14, 16, 22, 0.68);
+	backdrop-filter: blur(14px);
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.sc-mk-deskprev__row .t-ok {
+	color: #34d399;
+	font-weight: 600;
 }
 
 
