@@ -169,7 +169,7 @@ function sc_skill_render_meta_box( $post ) {
 
 	<div class="sc-mb-field">
 		<label for="sc_install_cmd">下单自动发货的安装 / 启动指令</label>
-		<input id="sc_install_cmd" name="sc_install_cmd" type="text" value="<?php echo esc_attr( $install_cmd ); ?>" placeholder="npx -y @workbench/cli@latest init --pack ops-servers">
+		<input id="sc_install_cmd" name="sc_install_cmd" type="text" value="<?php echo esc_attr( $install_cmd ); ?>" placeholder="npx -y @skiloy/cli@latest install --pack your-skill">
 	</div>
 
 	<hr style="margin:18px 0;border:0;border-top:1px solid #dcdcde">
@@ -396,7 +396,7 @@ function sc_seed_demo_skills() {
 				'_sc_featured'    => $s['featured'],
 				'_sc_title_en'    => $s['title_en'],
 				'_sc_subtitle'    => $s['desc'],
-				'_sc_install_cmd' => 'npx -y @agentdesk/cli@latest install --pack ' . $s['slug'],
+				'_sc_install_cmd' => 'npx -y @skiloy/cli@latest install --pack ' . $s['slug'],
 				'_sc_pack_slug'   => $s['slug'],
 				'_sc_cycle_days'  => ( '订阅制' === $s['billing'] ) ? 30 : 0,
 				'_sc_max_devices' => 2,

@@ -233,7 +233,7 @@ function sc_onboarding_steps() {
 			'num'      => '01',
 			'title'    => '按业务挑选工作台或插件',
 			'title_en' => 'Pick your Workbench, MCP, or Skill',
-			'desc'     => '覆盖服务器运维、电商运营、内容知识库与群控自动化等场景，先看实机界面预览，再按需买断或订阅。',
+			'desc'     => '覆盖服务器运维、电商运营、内容知识库与群控自动化等场景，先看实机界面，再按需买断或订阅。',
 			'desc_en'  => 'Choose from vertical workbenches, MCP servers, and Skill packs with live previews and flexible licensing.',
 		),
 		array(
@@ -272,7 +272,7 @@ function sc_security_pillars() {
 			'index'    => '01 / PRODUCTION-READY',
 			'title'    => '全栈自研工作台，真实业务反复验证',
 			'title_en' => 'Built & battle-tested in production',
-			'desc'     => '每一套工作台、MCP 与 Skill 均源自我们团队自用的真实业务工具，不是拼凑的玩具 Demo，买回就能跑通流程。',
+			'desc'     => '每一套工作台、MCP 与 Skill 均源自我们团队自用的真实业务工具，不是拼凑的玩具，买回就能跑通流程。',
 			'desc_en'  => 'Every workbench, MCP plugin, and Skill comes from our own production tooling—ready for real workloads on day one.',
 		),
 		array(
@@ -394,11 +394,11 @@ function sc_changelog_entries() {
 			'badge'      => '新特性', 'badge_en' => 'New Feature',
 			'title'      => '正式上线「业务工作台 + MCP + Skill」三大形态矩阵',
 			'title_en'   => 'Launched Workbenches, MCP Plugins & Skills Catalog',
-			'summary'    => '覆盖服务器掌管、跨境电商运营、内容知识库与设备群控 4 套核心工作台，详情页支持实机演示截图预览。',
+			'summary'    => '覆盖服务器掌管、跨境电商运营、内容知识库与设备群控 4 套核心工作台，详情页支持实机截图展示。',
 			'summary_en' => 'Released 4 flagship business workbenches with live interface previews and WP Media Library screenshot support.',
 			'items'      => array(
 				array( 'zh' => '正式上架基础设施掌管、跨境电商运营、内容知识库与设备群控 4 套核心业务工作台', 'en' => 'Released 4 flagship business workbenches covering Ops, Commerce, Content, and Device Fleets' ),
-				array( 'zh' => 'WP 后台商品编辑支持直接上传工作台实机演示截图与自定义内置模块标签', 'en' => 'Added media-library screenshot uploader and module tag editor in WP Admin' ),
+				array( 'zh' => 'WP 后台商品编辑支持直接上传工作台实机截图与自定义内置模块标签', 'en' => 'Added media-library screenshot uploader and module tag editor in WP Admin' ),
 				array( 'zh' => '全站品牌名自动跟随 WordPress 站点标题配置，无需改代码即可换牌', 'en' => 'Site branding now syncs automatically with WordPress Site Title settings' ),
 			),
 		),

@@ -81,7 +81,7 @@ $card_visuals = array(
 			<p><?php echo esc_html( sc_t( '把多台服务器、网站、面板、知识库与智能体收进同一个桌面工作台，实时监控 CPU / 内存 / 磁盘，异常直接交给 Agent 接管排查。', 'Unify servers, sites, panels, knowledge base, and agents inside one desktop workbench with live metrics and automated triage.' ) ); ?></p>
 			<div class="sc-mk-spot__actions">
 				<a class="sc-btn sc-btn--light" href="<?php echo esc_url( home_url( '/product/' ) ); ?>">
-					<?php echo esc_html( sc_t( '查看工作台预览 · ', 'Preview Workbench · ' ) ); ?><?php echo sc_price_html( '¥299' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> →
+					<?php echo esc_html( sc_t( '查看工作台 · ', 'View Workbench · ' ) ); ?><?php echo sc_price_html( '¥299' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> →
 				</a>
 				<a class="sc-mk-spot__link" href="<?php echo esc_url( home_url( '/custom/' ) ); ?>">
 					<?php echo esc_html( sc_t( '按业务定制工作台', 'Custom build' ) ); ?>

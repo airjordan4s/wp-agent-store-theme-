@@ -225,7 +225,7 @@ $faqs     = sc_faqs();
 					<span style="background:#febc2e"></span>
 					<span style="background:#28c840"></span>
 				</div>
-				<div class="sc-win-seg" role="tablist" aria-label="<?php echo esc_attr( sc_t( '切换演示工作台', 'Switch demo workbench' ) ); ?>">
+				<div class="sc-win-seg" role="tablist" aria-label="<?php echo esc_attr( sc_t( '切换工作台', 'Switch workbench' ) ); ?>">
 					<button type="button" class="sc-win-seg__btn is-active" data-wb-switch="ops" role="tab" aria-selected="true"><?php echo esc_html( sc_t( '运维工作台', 'Ops Desk' ) ); ?></button>
 					<button type="button" class="sc-win-seg__btn" data-wb-switch="ecom" role="tab" aria-selected="false"><?php echo esc_html( sc_t( '电商工作台', 'Commerce' ) ); ?></button>
 					<button type="button" class="sc-win-seg__btn" data-wb-switch="kb" role="tab" aria-selected="false"><?php echo esc_html( sc_t( '知识库工作台', 'Knowledge' ) ); ?></button>
@@ -244,7 +244,7 @@ $faqs     = sc_faqs();
 				<div class="sc-window__canvas">
 					<div class="sc-window__stage" id="sc-demoFeed">
 						<div class="sc-demo__intro" id="sc-demoIntro">
-							<span class="sc-demo__tag" id="sc-wbTag"><?php echo esc_html( sc_t( '业务工作台 · 实时演示', 'WORKBENCH · LIVE DEMO' ) ); ?></span>
+							<span class="sc-demo__tag" id="sc-wbTag"><?php echo esc_html( sc_t( '业务工作台 · 真实界面', 'WORKBENCH · LIVE UI' ) ); ?></span>
 							<h2 id="sc-wbTitle"><?php echo esc_html( sc_t( '点击右下角发送，体验 Agent 接管服务器运维。', 'Click send below to watch your Agent handle server ops.' ) ); ?></h2>
 							<div class="sc-demo__chips" id="sc-wbChips">
 								<span><?php echo esc_html( sc_t( '服务器 3 节点在线', '3 Nodes Online' ) ); ?></span>
@@ -257,7 +257,7 @@ $faqs     = sc_faqs();
 
 					<form class="sc-window__composer" id="sc-demoForm">
 						<textarea class="sc-window__textarea" id="sc-demoInput" rows="4"><?php echo esc_textarea( sc_txt( 'demo_prompt' ) ); ?></textarea>
-						<button type="submit" class="sc-send-circle" aria-label="<?php echo esc_attr( sc_t( '发送演示指令', 'Send demo prompt' ) ); ?>">
+						<button type="submit" class="sc-send-circle" aria-label="<?php echo esc_attr( sc_t( '发送指令', 'Send prompt' ) ); ?>">
 							<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
 								<path d="M12 19V5M5.5 11.5L12 5l6.5 6.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
 							</svg>
@@ -443,7 +443,7 @@ clients: [Cursor, Claude, Codex]</pre>
 					</div>
 					<div class="sc-mock-share">
 						<strong><?php echo esc_html( sc_t( '基础设施与服务器掌管工作台', 'Server & Infra Command Workbench' ) ); ?></strong>
-						<code>npx -y @agentdesk/cli@latest install --pack ops-server-workbench</code>
+						<code>npx -y @skiloy/cli@latest install --pack ops-server-workbench</code>
 						<div class="sc-mock-tags">
 							<span>Windows / macOS</span><span>Web</span><span>Cursor</span><span>Claude Code</span>
 						</div>

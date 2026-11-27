@@ -40,11 +40,11 @@ function sc_default_content() {
 		'hero_cta_under_en'   => 'Explore All Workbenches',
 
 		// macOS 演示窗
-		'demo_heading'        => '切换上方业务场景，预览实机工作台与 Agent 接管流程。',
-		'demo_heading_en'     => 'Switch workspaces above to preview live AI Workbenches.',
+		'demo_heading'        => '切换上方业务场景，查看对应工作台与 Agent 接管流程。',
+		'demo_heading_en'     => 'Switch workspaces above to see each live AI Workbench.',
 		'demo_prompt'         => '巡检全部在线节点负载，定位内存占用最高的实例并自动生成清理建议。',
 		'demo_prompt_en'      => 'Inspect all online nodes, find the highest memory instance, and draft a cleanup plan.',
-		'demo_copy_cmd'       => 'npx -y @agentdesk/cli@latest install --pack ops-server-workbench',
+		'demo_copy_cmd'       => 'npx -y @skiloy/cli@latest install --pack ops-server-workbench',
 
 		// 各区块主标题
 		'creators_title'      => "来自一线业务团队的\n真实使用反馈",
@@ -69,8 +69,8 @@ function sc_default_content() {
 		// 页脚 & 悬浮支持
 		'footer_slogan'       => '官方自研 AI 业务工作台、MCP 插件与 Skill 商店，下单即发，持续迭代。',
 		'footer_slogan_en'    => 'First-party AI Workbenches, MCP plugins & Skills — instant delivery, ongoing updates.',
-		'footer_contact'      => '售后与定制咨询：support@agentdesk.dev',
-		'footer_contact_en'   => 'Support & custom inquiries: support@agentdesk.dev',
+		'footer_contact'      => '售后与定制咨询：support@skiloy.com',
+		'footer_contact_en'   => 'Support & custom inquiries: support@skiloy.com',
 		'support_title'       => '官方售后与交流群',
 		'support_title_en'    => 'Official Support',
 		'support_desc'        => '扫码添加客服或加入用户群，获取部署协助与新品通知',

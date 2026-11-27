@@ -22,7 +22,7 @@ $price       = $post_id ? ( get_post_meta( $post_id, '_sc_price', true ) ?: '¥2
 $preview_img = $post_id ? get_post_meta( $post_id, '_sc_preview_img', true ) : '';
 $subtitle    = ( $post_id ? get_post_meta( $post_id, '_sc_subtitle', true ) : '' ) ?: sc_t( '集中掌管多台云主机、网站、面板与系统负载，把 SSH 排障、部署与日常巡检交给 Agent 自动执行，让基础设施井然有序。', 'Manage servers, sites, panels, and system load from one desktop workbench — hand routine ops and triage to your Agent.' );
 $clients     = ( $post_id ? get_post_meta( $post_id, '_sc_clients', true ) : '' ) ?: 'Windows / macOS / Web';
-$install_cmd = ( $post_id ? get_post_meta( $post_id, '_sc_install_cmd', true ) : '' ) ?: 'npx -y @agentdesk/cli@latest install --pack ops-server-workbench';
+$install_cmd = ( $post_id ? get_post_meta( $post_id, '_sc_install_cmd', true ) : '' ) ?: 'npx -y @skiloy/cli@latest install --pack ops-server-workbench';
 $raw_tags    = $post_id ? get_post_meta( $post_id, '_sc_tags', true ) : '服务器, 网站, 面板, 知识库, 智能体';
 $modules     = array_values( array_filter( array_map( 'trim', explode( ',', $raw_tags ) ) ) );
 
@@ -97,8 +97,8 @@ $pd_heat  = $post_id ? ( (int) get_post_meta( $post_id, '_sc_heat', true ) ?: 99
 			<!-- 工作台 / 产品实机演示截图区（后台上传真实截图自动替换） -->
 			<div class="sc-pd-block sc-pd-preview">
 				<div class="sc-pd-preview__head">
-					<h2><?php echo esc_html( sc_t( '界面与实机演示预览', 'Interface Preview' ) ); ?></h2>
-					<span><?php echo esc_html( $preview_img ? sc_t( '实机截图', 'Live Screenshot' ) : sc_t( '交互预览 · 可在 WP 后台上传实机截图替换', 'Preview · Upload real screenshot in WP Admin' ) ); ?></span>
+					<h2><?php echo esc_html( sc_t( '界面与实机截图', 'Interface' ) ); ?></h2>
+					<span><?php echo esc_html( $preview_img ? sc_t( '实机截图', 'Live Screenshot' ) : sc_t( '实机截图 · 可在 WP 后台上传替换', 'Screenshot · Upload in WP Admin' ) ); ?></span>
 				</div>
 
 				<?php
@@ -118,7 +118,7 @@ $pd_heat  = $post_id ? ( (int) get_post_meta( $post_id, '_sc_heat', true ) ?: 99
 								<span style="background:#28c840"></span>
 							</div>
 							<em class="sc-pd-shotframe__title"><?php echo esc_html( $title ); ?></em>
-							<button type="button" class="sc-pd-zoombtn" id="sc-zoomMainShot" aria-label="<?php echo esc_attr( sc_t( '放大预览', 'Zoom screenshot' ) ); ?>"><?php echo esc_html( sc_t( '点击放大 ⤢', 'Zoom ⤢' ) ); ?></button>
+							<button type="button" class="sc-pd-zoombtn" id="sc-zoomMainShot" aria-label="<?php echo esc_attr( sc_t( '放大查看', 'Zoom screenshot' ) ); ?>"><?php echo esc_html( sc_t( '点击放大 ⤢', 'Zoom ⤢' ) ); ?></button>
 						</div>
 						<img id="sc-mainShotImg" src="<?php echo esc_url( $gallery_urls[0] ); ?>" alt="<?php echo esc_attr( $title ); ?>" data-lightbox-trigger decoding="async">
 					</div>
