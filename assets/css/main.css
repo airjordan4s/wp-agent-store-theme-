@@ -5866,3 +5866,62 @@ button { font-family: inherit; }
 	.sc-pricing-stage .sc-cloud-plans,
 	.sc-pricing-stage .sc-custom-plans { grid-template-columns: 1fr; }
 }
+
+
+/* 窗顶奔跑小狗：改用品牌原版金元宝萌狗精灵图 */
+.sc-roof-track {
+	height: 64px;
+	margin-bottom: -6px;
+}
+
+.sc-roof-dog {
+	width: 58px;
+	height: 64px;
+}
+
+.sc-roof-dog__img {
+	display: block;
+	width: 58px;
+	height: auto;
+	transform-origin: center bottom;
+	filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+	transition: transform 160ms var(--sc-ease);
+}
+
+.sc-roof-dog__img--pet { display: none; }
+.sc-roof-dog.is-petted .sc-roof-dog__img--run { display: none; }
+.sc-roof-dog.is-petted .sc-roof-dog__img--pet { display: block; }
+
+.sc-roof-dog.is-left .sc-roof-dog__img {
+	transform: scaleX(-1);
+}
+
+.sc-roof-dog.is-running .sc-roof-dog__img--run {
+	animation: sc-rd-hop-r 0.42s ease-in-out infinite alternate;
+}
+
+.sc-roof-dog.is-running.is-left .sc-roof-dog__img--run {
+	animation: sc-rd-hop-l 0.42s ease-in-out infinite alternate;
+}
+
+.sc-roof-dog.is-petted .sc-roof-dog__img--pet {
+	transform: scaleX(1.08) scaleY(0.91);
+}
+
+.sc-roof-dog.is-petted.is-left .sc-roof-dog__img--pet {
+	transform: scaleX(-1.08) scaleY(0.91);
+}
+
+.sc-roof-dog__bubble {
+	bottom: 70px;
+}
+
+@keyframes sc-rd-hop-r {
+	from { transform: translateY(0) rotate(-5deg); }
+	to   { transform: translateY(-7px) rotate(5deg); }
+}
+
+@keyframes sc-rd-hop-l {
+	from { transform: scaleX(-1) translateY(0) rotate(-5deg); }
+	to   { transform: scaleX(-1) translateY(-7px) rotate(5deg); }
+}
