@@ -190,6 +190,51 @@ function sc_site_name() {
 	return $name ? $name : 'SkillCraft';
 }
 
+/**
+ * 前台不加载 Hostinger AI 助手的聊天挂件（后台 wp-admin 保持原样）。
+ * 按脚本地址匹配，不依赖插件句柄名，插件升级后依然有效。
+ */
+function sc_strip_hostinger_chat_widget() {
+	if ( is_admin() || ! function_exists( 'wp_scripts' ) ) {
+		return;
+	}
+	$needles = array( 'hostinger-chatbot', 'chatbot-widget', 'hostinger-ai-assistant/assets' );
+	$scripts = wp_scripts();
+	if ( ! empty( $scripts->registered ) ) {
+		foreach ( (array) $scripts->registered as $handle => $script ) {
+			$src = isset( $script->src ) ? (string) $script->src : '';
+			if ( '' === $src ) {
+				continue;
+			}
+			foreach ( $needles as $needle ) {
+				if ( false !== strpos( $src, $needle ) ) {
+					wp_dequeue_script( $handle );
+					wp_deregister_script( $handle );
+					break;
+				}
+			}
+		}
+	}
+	if ( function_exists( 'wp_styles' ) ) {
+		$styles = wp_styles();
+		if ( ! empty( $styles->registered ) ) {
+			foreach ( (array) $styles->registered as $handle => $style ) {
+				$src = isset( $style->src ) ? (string) $style->src : '';
+				if ( '' === $src ) {
+					continue;
+				}
+				foreach ( $needles as $needle ) {
+					if ( false !== strpos( $src, $needle ) ) {
+						wp_dequeue_style( $handle );
+						break;
+					}
+				}
+			}
+		}
+	}
+}
+add_action( 'wp_enqueue_scripts', 'sc_strip_hostinger_chat_widget', 999 );
+
 /** 作品集市（sc_skill 归档）链接；取不到归档时退回 /skills/ */
 function sc_catalog_url() {
 	$link = function_exists( 'get_post_type_archive_link' ) ? get_post_type_archive_link( 'sc_skill' ) : '';
