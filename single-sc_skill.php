@@ -299,7 +299,7 @@ $pd_heat  = $post_id ? ( (int) get_post_meta( $post_id, '_sc_heat', true ) ?: 99
 							$rec_desc  = sc_t( $rec['desc'], $rec['desc_en'] ?? $rec['desc'] );
 							$rec_badge = sc_t( $rec['badge'], $rec['badge_en'] ?? $rec['badge'] );
 							$rec_heat  = ! empty( $rec['heat'] ) ? (int) $rec['heat'] : ( $rec_heats[ $r_idx ] ?? 92 );
-							$rec_url   = $rec['url'] ?? home_url( '/product/' );
+							$rec_url   = $rec['url'] ?? sc_catalog_url();
 							?>
 							<a class="sc-pd-rec" href="<?php echo esc_url( $rec_url ); ?>">
 								<div class="sc-pd-rec__top">
@@ -327,7 +327,7 @@ $pd_heat  = $post_id ? ( (int) get_post_meta( $post_id, '_sc_heat', true ) ?: 99
 <!-- 购买弹窗：未登录先弹出「注册 / 登录」双 Tab 门禁，已登录直接确认下单 -->
 <?php
 $logged_in   = is_user_logged_in();
-$cur_url     = function_exists( 'get_permalink' ) && $post_id ? get_permalink( $post_id ) : home_url( '/product/' );
+$cur_url     = function_exists( 'get_permalink' ) && $post_id ? get_permalink( $post_id ) : sc_catalog_url();
 ?>
 <div class="sc-modal" id="sc-buyModal" hidden role="dialog" aria-modal="true" aria-labelledby="sc-buyModalTitle"
      data-skill-id="<?php echo esc_attr( $post_id ); ?>"

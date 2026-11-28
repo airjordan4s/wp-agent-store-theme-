@@ -186,7 +186,7 @@ $faqs     = sc_faqs();
 				<div class="sc-stream__track">
 					<?php for ( $dup = 0; $dup < 2; $dup++ ) : ?>
 						<?php foreach ( $row as $pill ) : ?>
-							<a class="sc-pill" href="<?php echo esc_url( home_url( '/product/' ) ); ?>">
+							<a class="sc-pill" href="<?php echo esc_url( sc_catalog_url() ); ?>">
 								<div class="sc-pill__head">
 									<span class="sc-pill__name"><?php echo esc_html( sc_t( $pill['name'], $pill['name_en'] ) ); ?></span>
 									<span class="sc-pill__price"><?php echo sc_price_html( $pill['price'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
@@ -230,7 +230,7 @@ $faqs     = sc_faqs();
 					<button type="button" class="sc-win-seg__btn" data-wb-switch="ecom" role="tab" aria-selected="false"><?php echo esc_html( sc_t( '电商工作台', 'Commerce' ) ); ?></button>
 					<button type="button" class="sc-win-seg__btn" data-wb-switch="kb" role="tab" aria-selected="false"><?php echo esc_html( sc_t( '知识库工作台', 'Knowledge' ) ); ?></button>
 				</div>
-				<a class="sc-win-chrome-link" href="<?php echo esc_url( home_url( '/product/' ) ); ?>"><?php echo esc_html( sc_t( '查看详情 →', 'Inspect →' ) ); ?></a>
+				<a class="sc-win-chrome-link" href="<?php echo esc_url( sc_catalog_url() ); ?>"><?php echo esc_html( sc_t( '查看详情 →', 'Inspect →' ) ); ?></a>
 			</div>
 
 			<div class="sc-window__shell">

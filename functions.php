@@ -190,6 +190,40 @@ function sc_site_name() {
 	return $name ? $name : 'SkillCraft';
 }
 
+/** 作品集市（sc_skill 归档）链接；取不到归档时退回 /skills/ */
+function sc_catalog_url() {
+	$link = function_exists( 'get_post_type_archive_link' ) ? get_post_type_archive_link( 'sc_skill' ) : '';
+	return $link ? $link : home_url( '/skills/' );
+}
+
+/** 单个商品链接：给了 slug 就取真实文章，取不到退回集市 */
+function sc_product_url( $slug = '' ) {
+	if ( $slug && function_exists( 'get_page_by_path' ) ) {
+		$found = get_page_by_path( $slug, OBJECT, 'sc_skill' );
+		if ( $found ) {
+			$link = get_permalink( $found );
+			if ( $link ) {
+				return $link;
+			}
+		}
+	}
+	return sc_catalog_url();
+}
+
+/** 兼容早期静态预览遗留的 /product/ 链接：301 回集市，不再 404 */
+function sc_redirect_legacy_product_path() {
+	if ( ! function_exists( 'is_404' ) || ! is_404() ) {
+		return;
+	}
+	$uri  = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$path = wp_parse_url( $uri, PHP_URL_PATH );
+	if ( is_string( $path ) && preg_match( '#^/product(/|$)#', $path ) ) {
+		wp_safe_redirect( sc_catalog_url(), 301 );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'sc_redirect_legacy_product_path', 25 );
+
 /** 文章浏览量自动统计与读取 */
 function sc_track_post_views() {
 	if ( is_admin() || ! function_exists( 'is_singular' ) || ! is_singular( 'post' ) ) {

@@ -137,7 +137,7 @@ function sc_marketplace_products() {
 			'desc_en'  => 'Unified server, site, panel, and load management with automated Agent triage and deployments.',
 			'price'    => '¥299',
 			'views'    => 5420, 'heat' => 99,
-			'url'      => home_url( '/product/' ),
+			'url'      => home_url( '/skills/' ),
 		),
 		array(
 			'title'    => '跨境电商全链路运营工作台',
@@ -149,7 +149,7 @@ function sc_marketplace_products() {
 			'desc_en'  => 'End-to-end product sourcing, localized listings, and multi-store operations in one desk.',
 			'price'    => '¥199/月',
 			'views'    => 4180, 'heat' => 97,
-			'url'      => home_url( '/product/' ),
+			'url'      => home_url( '/skills/' ),
 		),
 		array(
 			'title'    => '全渠道内容矩阵与知识库工作台',
@@ -161,7 +161,7 @@ function sc_marketplace_products() {
 			'desc_en'  => 'Centralize knowledge bases, prompt libraries, and multi-channel content publishing.',
 			'price'    => '¥249',
 			'views'    => 3690, 'heat' => 95,
-			'url'      => home_url( '/product/' ),
+			'url'      => home_url( '/skills/' ),
 		),
 		array(
 			'title'    => '浏览器与手机群控自动化工作台',
@@ -173,7 +173,7 @@ function sc_marketplace_products() {
 			'desc_en'  => 'Orchestrate multi-profile browsers and mobile device fleets with autonomous agents.',
 			'price'    => '¥269/月',
 			'views'    => 3240, 'heat' => 94,
-			'url'      => home_url( '/product/' ),
+			'url'      => home_url( '/skills/' ),
 		),
 		array(
 			'title'    => '数据库与 SQL 慢查询诊断 MCP',
@@ -185,7 +185,7 @@ function sc_marketplace_products() {
 			'desc_en'  => 'Standard MCP server analyzing EXPLAIN plans and locks with ready-to-run DDL rewrites.',
 			'price'    => '¥69',
 			'views'    => 2870, 'heat' => 93,
-			'url'      => home_url( '/product/' ),
+			'url'      => home_url( '/skills/' ),
 		),
 		array(
 			'title'    => '浏览器无头采集与登录态 MCP',
@@ -197,7 +197,7 @@ function sc_marketplace_products() {
 			'desc_en'  => 'Give your Agent persistent browser sessions, network hooks, and structured DOM capture.',
 			'price'    => '¥89',
 			'views'    => 2510, 'heat' => 92,
-			'url'      => home_url( '/product/' ),
+			'url'      => home_url( '/skills/' ),
 		),
 		array(
 			'title'    => 'PR 架构与安全审查 Skill',
@@ -209,7 +209,7 @@ function sc_marketplace_products() {
 			'desc_en'  => 'Catch auth bypasses, IDOR, N+1 queries, and race conditions before merge.',
 			'price'    => '¥59/月',
 			'views'    => 2190, 'heat' => 90,
-			'url'      => home_url( '/product/' ),
+			'url'      => home_url( '/skills/' ),
 		),
 		array(
 			'title'    => '合同条款风险与红线审阅 Skill',
@@ -221,7 +221,7 @@ function sc_marketplace_products() {
 			'desc_en'  => 'Flag asymmetric liability clauses in SaaS, MSA, and NDA drafts with balanced redlines.',
 			'price'    => '¥49',
 			'views'    => 1860, 'heat' => 88,
-			'url'      => home_url( '/product/' ),
+			'url'      => home_url( '/skills/' ),
 		),
 	);
 }
@@ -345,7 +345,7 @@ function sc_faq_guides() {
 			'title_en'   => 'Installing & activating Workbenches on Windows, macOS & Docker',
 			'summary'    => '3 分钟完成工作台初始化、输入专属授权码并连接你的第一台服务器或业务账号。',
 			'summary_en' => 'Initialize your workbench, apply your license key, and connect your first workspace in 3 minutes.',
-			'url'        => home_url( '/product/' ),
+			'url'        => home_url( '/skills/' ),
 		),
 		array(
 			'cat'        => 'MCP 与 Skill', 'cat_en' => 'MCP & Skills',
