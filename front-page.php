@@ -493,7 +493,13 @@ clients: [Cursor, Claude, Codex]</pre>
 				<?php for ( $dup = 0; $dup < 2; $dup++ ) : ?>
 					<?php foreach ( $agents as $ag ) : ?>
 						<div class="sc-agent-item">
-							<span class="sc-agent-item__icon" style="background:<?php echo esc_attr( $ag['color'] ); ?>"><?php echo esc_html( $ag['mark'] ); ?></span>
+							<span class="sc-agent-item__icon" style="background:<?php echo esc_attr( $ag['color'] ); ?>">
+								<?php if ( ! empty( $ag['logo'] ) ) : ?>
+									<img src="<?php echo esc_url( SKILLCRAFT_URI . '/assets/img/brands/' . $ag['logo'] ); ?>" alt="" width="20" height="20" loading="lazy" decoding="async">
+								<?php else : ?>
+									<?php echo esc_html( $ag['mark'] ); ?>
+								<?php endif; ?>
+							</span>
 							<strong><?php echo esc_html( $ag['name'] ); ?></strong>
 						</div>
 					<?php endforeach; ?>

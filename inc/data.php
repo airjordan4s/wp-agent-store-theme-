@@ -256,12 +256,12 @@ function sc_onboarding_steps() {
 /** 支持的 Agent 生态（纵向滚动） */
 function sc_supported_agents() {
 	return array(
-		array( 'name' => 'Cursor',      'color' => '#111111', 'mark' => 'Cu' ),
-		array( 'name' => 'Claude Code', 'color' => '#d97757', 'mark' => 'Cc' ),
-		array( 'name' => 'Codex CLI',   'color' => '#10a37f', 'mark' => 'Cx' ),
-		array( 'name' => 'Windsurf',    'color' => '#09b6a2', 'mark' => 'Ws' ),
-		array( 'name' => 'Antigravity', 'color' => '#1677ff', 'mark' => 'Ag' ),
-		array( 'name' => 'Desktop App', 'color' => '#6366f1', 'mark' => 'Dk' ),
+		array( 'name' => 'Cursor',      'color' => '#111111', 'mark' => 'Cu', 'logo' => 'cursor.svg' ),
+		array( 'name' => 'Claude Code', 'color' => '#d97757', 'mark' => 'Cc', 'logo' => 'claude.svg' ),
+		array( 'name' => 'Codex CLI',   'color' => '#10a37f', 'mark' => 'Cx', 'logo' => 'codex.svg' ),
+		array( 'name' => 'Windsurf',    'color' => '#09b6a2', 'mark' => 'Ws', 'logo' => 'windsurf.svg' ),
+		array( 'name' => 'Antigravity', 'color' => '#1677ff', 'mark' => 'Ag', 'logo' => 'antigravity.svg' ),
+		array( 'name' => 'Desktop App', 'color' => '#6366f1', 'mark' => 'Dk', 'logo' => 'desktop.svg' ),
 	);
 }
 
