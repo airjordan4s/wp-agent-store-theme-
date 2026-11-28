@@ -260,7 +260,7 @@ function sc_supported_agents() {
 		array( 'name' => 'Claude Code', 'color' => '#d97757', 'mark' => 'Cc', 'logo' => 'claude.svg' ),
 		array( 'name' => 'Codex CLI',   'color' => '#10a37f', 'mark' => 'Cx', 'logo' => 'codex.svg' ),
 		array( 'name' => 'Windsurf',    'color' => '#09b6a2', 'mark' => 'Ws', 'logo' => 'windsurf.svg' ),
-		array( 'name' => 'Antigravity', 'color' => '#1677ff', 'mark' => 'Ag', 'logo' => 'antigravity.svg' ),
+		array( 'name' => 'Antigravity', 'color' => '#1677ff', 'mark' => 'Ag', 'logo' => 'gemini.svg' ),
 		array( 'name' => 'Desktop App', 'color' => '#6366f1', 'mark' => 'Dk', 'logo' => 'desktop.svg' ),
 	);
 }
