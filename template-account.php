@@ -74,7 +74,7 @@ if ( empty( $orders ) && ! defined( 'ABSPATH' ) ) {
 	);
 }
 $order_count = count( $orders );
-$sync_cmd    = 'npx @skillcraft/cli sync --account ' . $user->user_login;
+$sync_cmd    = 'npx -y @skiloy/cli@latest sync --account ' . $user->user_login;
 ?>
 
 <section class="sc-band sc-account">
